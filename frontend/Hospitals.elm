@@ -4,19 +4,12 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Msgs exposing (Msg)
-import Models exposing (Hospital)
+import Models exposing (Model, Hospital)
 import RemoteData exposing (WebData)
 
 
-view : WebData (List Hospital) -> Html Msg
-view response =
-    div []
-        [ maybeList response
-        ]
-
-
-list : List Hospital -> Html Msg
-list hospitals =
+view : List Hospital -> Html Msg
+view refreshedHospitals =
     div []
         [ table []
             [ thead []
@@ -28,7 +21,7 @@ list hospitals =
                     , th [] [ text "Zip" ]
                     ]
                 ]
-            , tbody [] (List.map hospitalRow hospitals)
+            , tbody [] (List.map hospitalRow refreshedHospitals)
             ]
         ]
 
@@ -42,19 +35,3 @@ hospitalRow hospital =
         , td [] [ text hospital.state ]
         , td [] [ text hospital.zip ]
         ]
-
-
-maybeList : WebData (List Hospital) -> Html Msg
-maybeList response =
-    case response of
-        RemoteData.NotAsked ->
-            text ""
-
-        RemoteData.Loading ->
-            text "Loading..."
-
-        RemoteData.Success hospitals ->
-            list hospitals
-
-        RemoteData.Failure error ->
-            text (toString error)

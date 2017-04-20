@@ -24,7 +24,7 @@ var hospitals []hospital
 
 func main() {
 
-	//parse command line flags for db authentication
+	//for db authentication
 	user := flag.String("u", "", "db username")
 	pwd := flag.String("p", "", "db password")
 	flag.Parse()
@@ -60,6 +60,15 @@ func main() {
 	if err := rows.Err(); err != nil {
 		log.Println(err)
 	}
+
+	//serve front end
+	go func() {
+		http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("./frontend"))))
+
+		if err := http.ListenAndServe(":8080", nil); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	//serve `hospitals` slice through json web api
 	http.HandleFunc("/hospitals", getHospitals)

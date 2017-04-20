@@ -1,12 +1,36 @@
+var _user$project$Update$refresh = F2(
+	function (keyword, h) {
+		return A2(
+			_elm_lang$core$String$contains,
+			_elm_lang$core$String$toUpper(keyword),
+			h.name) ? _elm_lang$core$Maybe$Just(h) : _elm_lang$core$Maybe$Nothing;
+	});
+var _user$project$Update$updateInitial = function (response) {
+	var _p0 = response;
+	switch (_p0.ctor) {
+		case 'NotAsked':
+			return {ctor: '[]'};
+		case 'Loading':
+			return {ctor: '[]'};
+		case 'Failure':
+			return {ctor: '[]'};
+		default:
+			return _p0._0;
+	}
+};
 var _user$project$Update$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		if (_p0.ctor === 'OnFetchHospitals') {
+		var _p1 = msg;
+		if (_p1.ctor === 'OnFetchHospitals') {
+			var _p2 = _p1._0;
 			return {
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_Utils.update(
 					model,
-					{hospitals: _p0._0}),
+					{
+						initialHospitals: _user$project$Update$updateInitial(_p2),
+						refreshedHospitals: _user$project$Update$updateInitial(_p2)
+					}),
 				_1: _elm_lang$core$Platform_Cmd$none
 			};
 		} else {
@@ -14,7 +38,12 @@ var _user$project$Update$update = F2(
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_Utils.update(
 					model,
-					{filteredHospitals: 'barney'}),
+					{
+						refreshedHospitals: A2(
+							_elm_lang$core$List$filterMap,
+							_user$project$Update$refresh(_p1._0),
+							model.initialHospitals)
+					}),
 				_1: _elm_lang$core$Platform_Cmd$none
 			};
 		}

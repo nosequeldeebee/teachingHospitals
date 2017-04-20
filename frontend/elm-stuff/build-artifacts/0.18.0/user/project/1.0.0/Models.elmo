@@ -1,7 +1,10 @@
-var _user$project$Models$initialModel = {hospitals: _krisajenkins$remotedata$RemoteData$Loading, filteredHospitals: ''};
+var _user$project$Models$initialModel = {
+	initialHospitals: {ctor: '[]'},
+	refreshedHospitals: {ctor: '[]'}
+};
 var _user$project$Models$Model = F2(
 	function (a, b) {
-		return {hospitals: a, filteredHospitals: b};
+		return {initialHospitals: a, refreshedHospitals: b};
 	});
 var _user$project$Models$Hospital = F5(
 	function (a, b, c, d, e) {

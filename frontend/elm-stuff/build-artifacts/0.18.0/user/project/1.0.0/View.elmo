@@ -1,5 +1,5 @@
 var _user$project$View$page = function (model) {
-	return _user$project$Hospitals$view(model.hospitals);
+	return _user$project$Hospitals$view(model.refreshedHospitals);
 };
 var _user$project$View$view = function (model) {
 	return A2(
@@ -28,7 +28,7 @@ var _user$project$View$view = function (model) {
 						_0: _elm_lang$html$Html_Attributes$type_('text'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$placeholder('type here...'),
+							_0: _elm_lang$html$Html_Attributes$placeholder('Search Hospital Name'),
 							_1: {
 								ctor: '::',
 								_0: _elm_lang$html$Html_Events$onInput(_user$project$Msgs$Change),
@@ -39,19 +39,8 @@ var _user$project$View$view = function (model) {
 					{ctor: '[]'}),
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{ctor: '[]'},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text(model.filteredHospitals),
-							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: _user$project$View$page(model),
-						_1: {ctor: '[]'}
-					}
+					_0: _user$project$View$page(model),
+					_1: {ctor: '[]'}
 				}
 			}
 		});

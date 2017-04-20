@@ -10,14 +10,13 @@ import Hospitals
 
 view : Model -> Html Msg
 view model =
-    div [ class "jumbotron" ]
+    div []
         [ div [] [ text "Teaching Hospitals" ]
-        , input [ type_ "text", placeholder "type here...", onInput Msgs.Change ] []
-        , div [] [ text model.filteredHospitals ]
+        , input [ type_ "text", placeholder "Search Hospital Name", onInput Msgs.Change ] []
         , page model
         ]
 
 
 page : Model -> Html Msg
 page model =
-    Hospitals.view model.hospitals
+    Hospitals.view model.refreshedHospitals

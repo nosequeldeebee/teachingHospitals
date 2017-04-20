@@ -4,15 +4,15 @@ import RemoteData exposing (WebData)
 
 
 type alias Model =
-    { hospitals : WebData (List Hospital)
-    , filteredHospitals : String
+    { initialHospitals : List Hospital
+    , refreshedHospitals : List Hospital
     }
 
 
 initialModel : Model
 initialModel =
-    { hospitals = RemoteData.Loading
-    , filteredHospitals = ""
+    { initialHospitals = []
+    , refreshedHospitals = []
     }
 
 
