@@ -1,0 +1,12 @@
+var _user$project$Models$initialModel = {
+	hospitals: _krisajenkins$remotedata$RemoteData$Loading,
+	filteredHospitals: {ctor: '[]'}
+};
+var _user$project$Models$Model = F2(
+	function (a, b) {
+		return {hospitals: a, filteredHospitals: b};
+	});
+var _user$project$Models$Hospital = F5(
+	function (a, b, c, d, e) {
+		return {name: a, address: b, city: c, state: d, zip: e};
+	});
