@@ -11,5 +11,5 @@ update msg model =
         Msgs.OnFetchHospitals response ->
             ( { model | hospitals = response }, Cmd.none )
 
-        Msgs.FilterHospitals refresh ->
-            ( { model | filteredHospitals = refresh }, Cmd.none )
+        Msgs.Change change ->
+            ( { model | filteredHospitals = "barney" }, Cmd.none )

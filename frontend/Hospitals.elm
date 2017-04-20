@@ -11,16 +11,8 @@ import RemoteData exposing (WebData)
 view : WebData (List Hospital) -> Html Msg
 view response =
     div []
-        [ nav
-          --, input [ type_ "text", placeholder "Hospital Name", onInput Msgs.FilterHospitals ] []
-        , maybeList response
+        [ maybeList response
         ]
-
-
-nav : Html Msg
-nav =
-    div []
-        [ text "Teaching Hospitals" ]
 
 
 list : List Hospital -> Html Msg

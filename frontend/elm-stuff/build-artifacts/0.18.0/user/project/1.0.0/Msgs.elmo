@@ -1,5 +1,5 @@
-var _user$project$Msgs$FilterHospitals = function (a) {
-	return {ctor: 'FilterHospitals', _0: a};
+var _user$project$Msgs$Change = function (a) {
+	return {ctor: 'Change', _0: a};
 };
 var _user$project$Msgs$OnFetchHospitals = function (a) {
 	return {ctor: 'OnFetchHospitals', _0: a};

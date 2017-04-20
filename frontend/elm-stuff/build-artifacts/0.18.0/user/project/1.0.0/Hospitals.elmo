@@ -162,25 +162,13 @@ var _user$project$Hospitals$maybeList = function (response) {
 				_elm_lang$core$Basics$toString(_p0._0));
 	}
 };
-var _user$project$Hospitals$nav = A2(
-	_elm_lang$html$Html$div,
-	{ctor: '[]'},
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html$text('Teaching Hospitals'),
-		_1: {ctor: '[]'}
-	});
 var _user$project$Hospitals$view = function (response) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _user$project$Hospitals$nav,
-			_1: {
-				ctor: '::',
-				_0: _user$project$Hospitals$maybeList(response),
-				_1: {ctor: '[]'}
-			}
+			_0: _user$project$Hospitals$maybeList(response),
+			_1: {ctor: '[]'}
 		});
 };

@@ -6,4 +6,4 @@ import RemoteData exposing (WebData)
 
 type Msg
     = OnFetchHospitals (WebData (List Hospital))
-    | FilterHospitals (List (List Hospital))
+    | Change String

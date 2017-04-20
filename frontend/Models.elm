@@ -5,14 +5,14 @@ import RemoteData exposing (WebData)
 
 type alias Model =
     { hospitals : WebData (List Hospital)
-    , filteredHospitals : List (List Hospital)
+    , filteredHospitals : String
     }
 
 
 initialModel : Model
 initialModel =
     { hospitals = RemoteData.Loading
-    , filteredHospitals = []
+    , filteredHospitals = ""
     }
 
 

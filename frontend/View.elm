@@ -1,7 +1,8 @@
 module View exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Msgs exposing (Msg)
 import Models exposing (Model)
 import Hospitals
@@ -10,7 +11,10 @@ import Hospitals
 view : Model -> Html Msg
 view model =
     div [ class "jumbotron" ]
-        [ page model
+        [ div [] [ text "Teaching Hospitals" ]
+        , input [ type_ "text", placeholder "type here...", onInput Msgs.Change ] []
+        , div [] [ text model.filteredHospitals ]
+        , page model
         ]
 
 
