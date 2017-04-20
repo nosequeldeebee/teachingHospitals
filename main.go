@@ -24,6 +24,7 @@ var hospitals []hospital
 
 func main() {
 
+	//parse command line flags for db authentication
 	user := flag.String("u", "", "db username")
 	pwd := flag.String("p", "", "db password")
 	flag.Parse()
@@ -69,7 +70,7 @@ func main() {
 }
 
 func getHospitals(w http.ResponseWriter, r *http.Request) {
-	//	w.Header().Set("Access-Control-Allow-Origin", "*")
+	//set headers for CORS
 	if origin := r.Header.Get("Origin"); origin != "" {
 		w.Header().Set("Access-Control-Allow-Origin", origin)
 		w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
@@ -81,6 +82,7 @@ func getHospitals(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	//prettify api endpoint
 	b, err := json.MarshalIndent(hospitals, "", " ")
 	if err != nil {
 		fmt.Println("couldn't indent json", err)
