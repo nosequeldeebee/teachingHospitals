@@ -21,30 +21,106 @@ var _user$project$Update$updateInitial = function (response) {
 var _user$project$Update$update = F2(
 	function (msg, model) {
 		var _p1 = msg;
-		if (_p1.ctor === 'OnFetchHospitals') {
-			var _p2 = _p1._0;
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						initialHospitals: _user$project$Update$updateInitial(_p2),
-						refreshedHospitals: _user$project$Update$updateInitial(_p2)
-					}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		} else {
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						refreshedHospitals: A2(
-							_elm_lang$core$List$filterMap,
-							_user$project$Update$refresh(_p1._0),
-							model.initialHospitals)
-					}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
+		switch (_p1.ctor) {
+			case 'OnFetchHospitals':
+				var _p2 = _p1._0;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							initialHospitals: _user$project$Update$updateInitial(_p2),
+							refreshedHospitals: _user$project$Update$updateInitial(_p2)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'Change':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$filterMap,
+								_user$project$Update$refresh(_p1._0),
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SortName':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.name;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SortAddress':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.address;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SortCity':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.city;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SortState':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.state;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.zip;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});

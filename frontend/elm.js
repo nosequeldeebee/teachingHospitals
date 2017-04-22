@@ -9342,6 +9342,11 @@ var _user$project$Models$Hospital = F5(
 		return {name: a, address: b, city: c, state: d, zip: e};
 	});
 
+var _user$project$Msgs$SortZip = {ctor: 'SortZip'};
+var _user$project$Msgs$SortState = {ctor: 'SortState'};
+var _user$project$Msgs$SortCity = {ctor: 'SortCity'};
+var _user$project$Msgs$SortAddress = {ctor: 'SortAddress'};
+var _user$project$Msgs$SortName = {ctor: 'SortName'};
 var _user$project$Msgs$Change = function (a) {
 	return {ctor: 'Change', _0: a};
 };
@@ -9465,7 +9470,18 @@ var _user$project$Hospitals$view = function (refreshedHospitals) {
 										{ctor: '[]'},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text('Name'),
+											_0: A2(
+												_elm_lang$html$Html$button,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortName),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Name'),
+													_1: {ctor: '[]'}
+												}),
 											_1: {ctor: '[]'}
 										}),
 									_1: {
@@ -9475,7 +9491,18 @@ var _user$project$Hospitals$view = function (refreshedHospitals) {
 											{ctor: '[]'},
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html$text('Address'),
+												_0: A2(
+													_elm_lang$html$Html$button,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortAddress),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('Address'),
+														_1: {ctor: '[]'}
+													}),
 												_1: {ctor: '[]'}
 											}),
 										_1: {
@@ -9485,7 +9512,18 @@ var _user$project$Hospitals$view = function (refreshedHospitals) {
 												{ctor: '[]'},
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html$text('City'),
+													_0: A2(
+														_elm_lang$html$Html$button,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortCity),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text('City'),
+															_1: {ctor: '[]'}
+														}),
 													_1: {ctor: '[]'}
 												}),
 											_1: {
@@ -9495,7 +9533,18 @@ var _user$project$Hospitals$view = function (refreshedHospitals) {
 													{ctor: '[]'},
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html$text('State'),
+														_0: A2(
+															_elm_lang$html$Html$button,
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortState),
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('State'),
+																_1: {ctor: '[]'}
+															}),
 														_1: {ctor: '[]'}
 													}),
 												_1: {
@@ -9505,7 +9554,18 @@ var _user$project$Hospitals$view = function (refreshedHospitals) {
 														{ctor: '[]'},
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html$text('Zip'),
+															_0: A2(
+																_elm_lang$html$Html$button,
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortZip),
+																	_1: {ctor: '[]'}
+																},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Zip'),
+																	_1: {ctor: '[]'}
+																}),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
@@ -9552,31 +9612,107 @@ var _user$project$Update$updateInitial = function (response) {
 var _user$project$Update$update = F2(
 	function (msg, model) {
 		var _p1 = msg;
-		if (_p1.ctor === 'OnFetchHospitals') {
-			var _p2 = _p1._0;
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						initialHospitals: _user$project$Update$updateInitial(_p2),
-						refreshedHospitals: _user$project$Update$updateInitial(_p2)
-					}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		} else {
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						refreshedHospitals: A2(
-							_elm_lang$core$List$filterMap,
-							_user$project$Update$refresh(_p1._0),
-							model.initialHospitals)
-					}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
+		switch (_p1.ctor) {
+			case 'OnFetchHospitals':
+				var _p2 = _p1._0;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							initialHospitals: _user$project$Update$updateInitial(_p2),
+							refreshedHospitals: _user$project$Update$updateInitial(_p2)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'Change':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$filterMap,
+								_user$project$Update$refresh(_p1._0),
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SortName':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.name;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SortAddress':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.address;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SortCity':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.city;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SortState':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.state;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.zip;
+								},
+								model.initialHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
 
