@@ -63,7 +63,7 @@ func main() {
 
 	//serve front end
 	go func() {
-		http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("./frontend"))))
+		http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("./src"))))
 
 		if err := http.ListenAndServe(":8080", nil); err != nil {
 			log.Fatal(err)
