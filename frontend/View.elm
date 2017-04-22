@@ -11,8 +11,7 @@ import Hospitals
 view : Model -> Html Msg
 view model =
     div []
-        [ div [] [ text "Teaching Hospitals" ]
-        , input [ type_ "text", placeholder "Search Hospital Name", onInput Msgs.Change ] []
+        [ input [ type_ "text", placeholder "Search", onInput Msgs.Change ] []
         , page model
         ]
 

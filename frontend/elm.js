@@ -9586,44 +9586,29 @@ var _user$project$View$page = function (model) {
 var _user$project$View$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('jumbotron'),
-			_1: {ctor: '[]'}
-		},
+		{ctor: '[]'},
 		{
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$div,
-				{ctor: '[]'},
+				_elm_lang$html$Html$input,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('Teaching Hospitals'),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$input,
-					{
+					_0: _elm_lang$html$Html_Attributes$type_('text'),
+					_1: {
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$type_('text'),
+						_0: _elm_lang$html$Html_Attributes$placeholder('Search'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$placeholder('Search Hospital Name'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Events$onInput(_user$project$Msgs$Change),
-								_1: {ctor: '[]'}
-							}
+							_0: _elm_lang$html$Html_Events$onInput(_user$project$Msgs$Change),
+							_1: {ctor: '[]'}
 						}
-					},
-					{ctor: '[]'}),
-				_1: {
-					ctor: '::',
-					_0: _user$project$View$page(model),
-					_1: {ctor: '[]'}
-				}
+					}
+				},
+				{ctor: '[]'}),
+			_1: {
+				ctor: '::',
+				_0: _user$project$View$page(model),
+				_1: {ctor: '[]'}
 			}
 		});
 };
