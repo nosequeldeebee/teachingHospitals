@@ -1,3 +1,4 @@
+var _user$project$Msgs$NextPage = {ctor: 'NextPage'};
 var _user$project$Msgs$SortZip = {ctor: 'SortZip'};
 var _user$project$Msgs$SortState = {ctor: 'SortState'};
 var _user$project$Msgs$SortCity = {ctor: 'SortCity'};

@@ -30,11 +30,13 @@ var _user$project$Update$update = F2(
 						model,
 						{
 							initialHospitals: _user$project$Update$updateInitial(_p2),
-							refreshedHospitals: _user$project$Update$updateInitial(_p2)
+							refreshedHospitals: _user$project$Update$updateInitial(_p2),
+							searchedHospitals: _user$project$Update$updateInitial(_p2)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Change':
+				var _p3 = _p1._0;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -42,8 +44,13 @@ var _user$project$Update$update = F2(
 						{
 							refreshedHospitals: A2(
 								_elm_lang$core$List$filterMap,
-								_user$project$Update$refresh(_p1._0),
-								model.initialHospitals)
+								_user$project$Update$refresh(_p3),
+								model.initialHospitals),
+							searchedHospitals: A2(
+								_elm_lang$core$List$filterMap,
+								_user$project$Update$refresh(_p3),
+								model.initialHospitals),
+							index: 10
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -53,12 +60,19 @@ var _user$project$Update$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
+							searchedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.name;
+								},
+								model.initialHospitals),
 							refreshedHospitals: A2(
 								_elm_lang$core$List$sortBy,
 								function (_) {
 									return _.name;
 								},
-								model.initialHospitals)
+								model.initialHospitals),
+							index: 10
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -68,12 +82,19 @@ var _user$project$Update$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
+							searchedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.address;
+								},
+								model.initialHospitals),
 							refreshedHospitals: A2(
 								_elm_lang$core$List$sortBy,
 								function (_) {
 									return _.address;
 								},
-								model.initialHospitals)
+								model.initialHospitals),
+							index: 10
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -83,12 +104,19 @@ var _user$project$Update$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
+							searchedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.city;
+								},
+								model.initialHospitals),
 							refreshedHospitals: A2(
 								_elm_lang$core$List$sortBy,
 								function (_) {
 									return _.city;
 								},
-								model.initialHospitals)
+								model.initialHospitals),
+							index: 10
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -98,12 +126,41 @@ var _user$project$Update$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
+							searchedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.state;
+								},
+								model.initialHospitals),
 							refreshedHospitals: A2(
 								_elm_lang$core$List$sortBy,
 								function (_) {
 									return _.state;
 								},
-								model.initialHospitals)
+								model.initialHospitals),
+							index: 10
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SortZip':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							searchedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.zip;
+								},
+								model.initialHospitals),
+							refreshedHospitals: A2(
+								_elm_lang$core$List$sortBy,
+								function (_) {
+									return _.zip;
+								},
+								model.initialHospitals),
+							index: 10
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -113,12 +170,8 @@ var _user$project$Update$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.zip;
-								},
-								model.initialHospitals)
+							refreshedHospitals: A2(_elm_lang$core$List$take, model.index + 10, model.searchedHospitals),
+							index: model.index + 10
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};

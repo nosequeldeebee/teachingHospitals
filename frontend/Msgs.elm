@@ -12,3 +12,4 @@ type Msg
     | SortCity
     | SortState
     | SortZip
+    | NextPage

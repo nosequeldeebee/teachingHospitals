@@ -6,6 +6,8 @@ import RemoteData exposing (WebData)
 type alias Model =
     { initialHospitals : List Hospital
     , refreshedHospitals : List Hospital
+    , searchedHospitals : List Hospital
+    , index : Int
     }
 
 
@@ -13,6 +15,8 @@ initialModel : Model
 initialModel =
     { initialHospitals = []
     , refreshedHospitals = []
+    , searchedHospitals = []
+    , index = 10
     }
 
 

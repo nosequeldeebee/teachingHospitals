@@ -13,9 +13,11 @@ view model =
     div []
         [ input [ type_ "text", placeholder "Search", onInput Msgs.Change ] []
         , page model
+        , br [] []
+        , button [ onClick Msgs.NextPage ] [ text "Load More" ]
         ]
 
 
 page : Model -> Html Msg
 page model =
-    Hospitals.view model.refreshedHospitals
+    Hospitals.view (List.take model.index model.refreshedHospitals)
