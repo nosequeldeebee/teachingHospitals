@@ -7,6 +7,7 @@ type alias Model =
     { initialHospitals : List Hospital
     , refreshedHospitals : List Hospital
     , searchedHospitals : List Hospital
+    , apikey : List Key
     , index : Int
     }
 
@@ -16,6 +17,7 @@ initialModel =
     { initialHospitals = []
     , refreshedHospitals = []
     , searchedHospitals = []
+    , apikey = []
     , index = 10
     }
 
@@ -27,3 +29,7 @@ type alias Hospital =
     , state : String
     , zip : String
     }
+
+
+type alias Key =
+    { key : String }

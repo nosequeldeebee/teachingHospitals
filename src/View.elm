@@ -14,7 +14,7 @@ view model =
         [ input [ type_ "text", placeholder "Search", onInput Msgs.Change ] []
         , page model
         , br [] []
-        , button [ onClick Msgs.NextPage ] [ text "Load More" ]
+        , button [ onClick Msgs.NextPage ] [ text (toString model.apikey) ]
         ]
 
 

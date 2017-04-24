@@ -7,6 +7,9 @@ var _user$project$Msgs$SortName = {ctor: 'SortName'};
 var _user$project$Msgs$Change = function (a) {
 	return {ctor: 'Change', _0: a};
 };
+var _user$project$Msgs$OnFetchKeys = function (a) {
+	return {ctor: 'OnFetchKeys', _0: a};
+};
 var _user$project$Msgs$OnFetchHospitals = function (a) {
 	return {ctor: 'OnFetchHospitals', _0: a};
 };

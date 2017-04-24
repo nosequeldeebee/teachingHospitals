@@ -44,7 +44,8 @@ var _user$project$View$view = function (model) {
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('Load More'),
+								_0: _elm_lang$html$Html$text(
+									_elm_lang$core$Basics$toString(model.apikey)),
 								_1: {ctor: '[]'}
 							}),
 						_1: {ctor: '[]'}

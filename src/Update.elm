@@ -1,7 +1,7 @@
 module Update exposing (..)
 
 import Msgs exposing (Msg)
-import Models exposing (Model, Hospital)
+import Models exposing (Model, Hospital, Key)
 import RemoteData exposing (WebData)
 import Random exposing (..)
 
@@ -11,6 +11,9 @@ update msg model =
     case msg of
         Msgs.OnFetchHospitals response ->
             ( { model | initialHospitals = updateInitial response, refreshedHospitals = updateInitial response, searchedHospitals = updateInitial response }, Cmd.none )
+
+        Msgs.OnFetchKeys response ->
+            ( { model | apikey = updateInitialKey response }, Cmd.none )
 
         Msgs.Change keyword ->
             ( { model | refreshedHospitals = List.filterMap (refresh keyword) model.initialHospitals, searchedHospitals = List.filterMap (refresh keyword) model.initialHospitals, index = 10 }, Cmd.none )
@@ -48,6 +51,22 @@ updateInitial response =
 
         RemoteData.Success hospitals ->
             hospitals
+
+
+updateInitialKey : WebData (List Key) -> List Key
+updateInitialKey response =
+    case response of
+        RemoteData.NotAsked ->
+            []
+
+        RemoteData.Loading ->
+            []
+
+        RemoteData.Failure error ->
+            []
+
+        RemoteData.Success keys ->
+            keys
 
 
 refresh : String -> Hospital -> Maybe Hospital
