@@ -1,3 +1,44 @@
+var _user$project$Hospitals$replaceSpace = function (c) {
+	return _elm_lang$core$Native_Utils.eq(
+		c,
+		_elm_lang$core$Native_Utils.chr(' ')) ? _elm_lang$core$Native_Utils.chr('+') : c;
+};
+var _user$project$Hospitals$processLink = F3(
+	function (address, city, state) {
+		var fixedState = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, state);
+		var fixedCity = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, city);
+		var fixedAddress = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, address);
+		return _elm_lang$core$String$concat(
+			{
+				ctor: '::',
+				_0: 'https://maps.googleapis.com/maps/api/staticmap?center=',
+				_1: {
+					ctor: '::',
+					_0: fixedAddress,
+					_1: {
+						ctor: '::',
+						_0: '+',
+						_1: {
+							ctor: '::',
+							_0: fixedCity,
+							_1: {
+								ctor: '::',
+								_0: '+',
+								_1: {
+									ctor: '::',
+									_0: fixedState,
+									_1: {
+										ctor: '::',
+										_0: '&zoom=13&size=600x300&maptype=roadmap\n    &key=AIzaSyBCTXc0M-RY0_vcAC9g-ZboJPBgjTKwfVY',
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			});
+	});
 var _user$project$Hospitals$hospitalRow = function (hospital) {
 	return A2(
 		_elm_lang$html$Html$tr,
@@ -52,7 +93,34 @@ var _user$project$Hospitals$hospitalRow = function (hospital) {
 									_0: _elm_lang$html$Html$text(hospital.zip),
 									_1: {ctor: '[]'}
 								}),
-							_1: {ctor: '[]'}
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$a,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$href(
+											A3(_user$project$Hospitals$processLink, hospital.address, hospital.city, hospital.state)),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$target('_blank'),
+											_1: {ctor: '[]'}
+										}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$img,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$src('map.png'),
+												_1: {ctor: '[]'}
+											},
+											{ctor: '[]'}),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
 						}
 					}
 				}

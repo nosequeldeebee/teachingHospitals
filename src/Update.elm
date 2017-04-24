@@ -1,7 +1,11 @@
 module Update exposing (..)
 
 import Msgs exposing (Msg)
+<<<<<<< Updated upstream
 import Models exposing (Model, Hospital, Key)
+=======
+import Models exposing (..)
+>>>>>>> Stashed changes
 import RemoteData exposing (WebData)
 import Random exposing (..)
 

@@ -4,7 +4,11 @@ import Http
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (decode, required)
 import Msgs exposing (Msg)
+<<<<<<< Updated upstream
 import Models exposing (Hospital, Key)
+=======
+import Models exposing (..)
+>>>>>>> Stashed changes
 import RemoteData
 
 

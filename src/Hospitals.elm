@@ -34,4 +34,28 @@ hospitalRow hospital =
         , td [] [ text hospital.city ]
         , td [] [ text hospital.state ]
         , td [] [ text hospital.zip ]
+        , a [ href (processLink hospital.address hospital.city hospital.state), target "_blank" ] [ (img [ src "map.png" ] []) ]
         ]
+
+
+processLink : String -> String -> String -> String
+processLink address city state =
+    let
+        fixedAddress =
+            String.map replaceSpace address
+
+        fixedCity =
+            String.map replaceSpace city
+
+        fixedState =
+            String.map replaceSpace state
+    in
+        String.concat [ "https://maps.googleapis.com/maps/api/staticmap?center=", fixedAddress, "+", fixedCity, "+", fixedState, "&zoom=13&size=600x300&maptype=roadmap\n    &key=AIzaSyBCTXc0M-RY0_vcAC9g-ZboJPBgjTKwfVY" ]
+
+
+replaceSpace : Char -> Char
+replaceSpace c =
+    if c == ' ' then
+        '+'
+    else
+        c
