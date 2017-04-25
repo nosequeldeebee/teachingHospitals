@@ -1,12 +1,11 @@
 module Msgs exposing (..)
 
-import Models exposing (Hospital, Key)
+import Models exposing (Hospital)
 import RemoteData exposing (WebData)
 
 
 type Msg
     = OnFetchHospitals (WebData (List Hospital))
-    | OnFetchKeys (WebData (List Key))
     | Change String
     | SortName
     | SortAddress

@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Msgs exposing (Msg)
-import Models exposing (Model, Hospital)
+import Models exposing (..)
 import RemoteData exposing (WebData)
 
 
@@ -50,7 +50,7 @@ processLink address city state =
         fixedState =
             String.map replaceSpace state
     in
-        String.concat [ "https://maps.googleapis.com/maps/api/staticmap?center=", fixedAddress, "+", fixedCity, "+", fixedState, "&zoom=13&size=600x300&maptype=roadmap\n    &key=AIzaSyBCTXc0M-RY0_vcAC9g-ZboJPBgjTKwfVY" ]
+        String.concat [ "https://maps.googleapis.com/maps/api/staticmap?center=", fixedAddress, "+", fixedCity, "+", fixedState, "&zoom=13&size=600x300&maptype=roadmap" ]
 
 
 replaceSpace : Char -> Char

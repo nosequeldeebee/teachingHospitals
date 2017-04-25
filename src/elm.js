@@ -9712,20 +9712,16 @@ var _user$project$Models$initialModel = {
 	initialHospitals: {ctor: '[]'},
 	refreshedHospitals: {ctor: '[]'},
 	searchedHospitals: {ctor: '[]'},
-	apikey: {ctor: '[]'},
 	index: 10
 };
-var _user$project$Models$Model = F5(
-	function (a, b, c, d, e) {
-		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, apikey: d, index: e};
+var _user$project$Models$Model = F4(
+	function (a, b, c, d) {
+		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, index: d};
 	});
 var _user$project$Models$Hospital = F5(
 	function (a, b, c, d, e) {
 		return {name: a, address: b, city: c, state: d, zip: e};
 	});
-var _user$project$Models$Key = function (a) {
-	return {key: a};
-};
 
 var _user$project$Msgs$NextPage = {ctor: 'NextPage'};
 var _user$project$Msgs$SortZip = {ctor: 'SortZip'};
@@ -9736,18 +9732,10 @@ var _user$project$Msgs$SortName = {ctor: 'SortName'};
 var _user$project$Msgs$Change = function (a) {
 	return {ctor: 'Change', _0: a};
 };
-var _user$project$Msgs$OnFetchKeys = function (a) {
-	return {ctor: 'OnFetchKeys', _0: a};
-};
 var _user$project$Msgs$OnFetchHospitals = function (a) {
 	return {ctor: 'OnFetchHospitals', _0: a};
 };
 
-var _user$project$Commands$keyDecoder = A3(
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
-	'key',
-	_elm_lang$core$Json_Decode$string,
-	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$Models$Key));
 var _user$project$Commands$hospitalDecoder = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'zip',
@@ -9769,15 +9757,8 @@ var _user$project$Commands$hospitalDecoder = A3(
 					'name',
 					_elm_lang$core$Json_Decode$string,
 					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$Models$Hospital))))));
-var _user$project$Commands$keysDecoder = _elm_lang$core$Json_Decode$list(_user$project$Commands$keyDecoder);
 var _user$project$Commands$hospitalsDecoder = _elm_lang$core$Json_Decode$list(_user$project$Commands$hospitalDecoder);
-var _user$project$Commands$fetchKeysUrl = 'http://localhost:4001/google-api-key-boat-house';
-var _user$project$Commands$fetchHospitalsUrl = 'http://localhost:3001/hospitals';
-var _user$project$Commands$fetchKeys = A2(
-	_elm_lang$core$Platform_Cmd$map,
-	_user$project$Msgs$OnFetchKeys,
-	_krisajenkins$remotedata$RemoteData$sendRequest(
-		A2(_elm_lang$http$Http$get, _user$project$Commands$fetchKeysUrl, _user$project$Commands$keysDecoder)));
+var _user$project$Commands$fetchHospitalsUrl = 'http://trinki.io:3001/hospitals';
 var _user$project$Commands$fetchHospitals = A2(
 	_elm_lang$core$Platform_Cmd$map,
 	_user$project$Msgs$OnFetchHospitals,
@@ -9815,7 +9796,7 @@ var _user$project$Hospitals$processLink = F3(
 									_0: fixedState,
 									_1: {
 										ctor: '::',
-										_0: '&zoom=13&size=600x300&maptype=roadmap\n    &key=AIzaSyBCTXc0M-RY0_vcAC9g-ZboJPBgjTKwfVY',
+										_0: '&zoom=13&size=600x300&maptype=roadmap',
 										_1: {ctor: '[]'}
 									}
 								}
@@ -10065,61 +10046,56 @@ var _user$project$Update$refresh = F2(
 			_elm_lang$core$String$toUpper(keyword),
 			h.name) ? _elm_lang$core$Maybe$Just(h) : _elm_lang$core$Maybe$Nothing;
 	});
-var _user$project$Update$updateInitialKey = function (response) {
+var _user$project$Update$updateInitial = function (response) {
 	var _p0 = response;
 	switch (_p0.ctor) {
 		case 'NotAsked':
-			return {ctor: '[]'};
+			return {
+				ctor: '::',
+				_0: {name: '', address: '', city: '', state: '', zip: ''},
+				_1: {ctor: '[]'}
+			};
 		case 'Loading':
-			return {ctor: '[]'};
+			return {
+				ctor: '::',
+				_0: {name: 'Loading...', address: '', city: '', state: '', zip: ''},
+				_1: {ctor: '[]'}
+			};
 		case 'Failure':
-			return {ctor: '[]'};
+			return {
+				ctor: '::',
+				_0: {
+					name: _elm_lang$core$Basics$toString(_p0._0),
+					address: '',
+					city: '',
+					state: '',
+					zip: ''
+				},
+				_1: {ctor: '[]'}
+			};
 		default:
 			return _p0._0;
 	}
 };
-var _user$project$Update$updateInitial = function (response) {
-	var _p1 = response;
-	switch (_p1.ctor) {
-		case 'NotAsked':
-			return {ctor: '[]'};
-		case 'Loading':
-			return {ctor: '[]'};
-		case 'Failure':
-			return {ctor: '[]'};
-		default:
-			return _p1._0;
-	}
-};
 var _user$project$Update$update = F2(
 	function (msg, model) {
-		var _p2 = msg;
-		switch (_p2.ctor) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
 			case 'OnFetchHospitals':
-				var _p3 = _p2._0;
+				var _p2 = _p1._0;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							initialHospitals: _user$project$Update$updateInitial(_p3),
-							refreshedHospitals: _user$project$Update$updateInitial(_p3),
-							searchedHospitals: _user$project$Update$updateInitial(_p3)
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'OnFetchKeys':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							apikey: _user$project$Update$updateInitialKey(_p2._0)
+							initialHospitals: _user$project$Update$updateInitial(_p2),
+							refreshedHospitals: _user$project$Update$updateInitial(_p2),
+							searchedHospitals: _user$project$Update$updateInitial(_p2)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Change':
-				var _p4 = _p2._0;
+				var _p3 = _p1._0;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -10127,11 +10103,11 @@ var _user$project$Update$update = F2(
 						{
 							refreshedHospitals: A2(
 								_elm_lang$core$List$filterMap,
-								_user$project$Update$refresh(_p4),
+								_user$project$Update$refresh(_p3),
 								model.initialHospitals),
 							searchedHospitals: A2(
 								_elm_lang$core$List$filterMap,
-								_user$project$Update$refresh(_p4),
+								_user$project$Update$refresh(_p3),
 								model.initialHospitals),
 							index: 10
 						}),
@@ -10307,8 +10283,7 @@ var _user$project$View$view = function (model) {
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									_elm_lang$core$Basics$toString(model.apikey)),
+								_0: _elm_lang$html$Html$text('Load More'),
 								_1: {ctor: '[]'}
 							}),
 						_1: {ctor: '[]'}
@@ -10321,20 +10296,7 @@ var _user$project$View$view = function (model) {
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$init = {
-	ctor: '_Tuple2',
-	_0: _user$project$Models$initialModel,
-	_1: _elm_lang$core$Platform_Cmd$batch(
-		{
-			ctor: '::',
-			_0: _user$project$Commands$fetchHospitals,
-			_1: {
-				ctor: '::',
-				_0: _user$project$Commands$fetchKeys,
-				_1: {ctor: '[]'}
-			}
-		})
-};
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel, _1: _user$project$Commands$fetchHospitals};
 var _user$project$Main$main = _elm_lang$html$Html$program(
 	{init: _user$project$Main$init, view: _user$project$View$view, update: _user$project$Update$update, subscriptions: _user$project$Main$subscriptions})();
 

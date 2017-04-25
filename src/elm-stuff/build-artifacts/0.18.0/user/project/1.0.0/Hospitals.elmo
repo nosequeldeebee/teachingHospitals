@@ -29,7 +29,7 @@ var _user$project$Hospitals$processLink = F3(
 									_0: fixedState,
 									_1: {
 										ctor: '::',
-										_0: '&zoom=13&size=600x300&maptype=roadmap\n    &key=AIzaSyBCTXc0M-RY0_vcAC9g-ZboJPBgjTKwfVY',
+										_0: '&zoom=13&size=600x300&maptype=roadmap',
 										_1: {ctor: '[]'}
 									}
 								}

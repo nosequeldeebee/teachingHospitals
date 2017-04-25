@@ -2,17 +2,13 @@ var _user$project$Models$initialModel = {
 	initialHospitals: {ctor: '[]'},
 	refreshedHospitals: {ctor: '[]'},
 	searchedHospitals: {ctor: '[]'},
-	apikey: {ctor: '[]'},
 	index: 10
 };
-var _user$project$Models$Model = F5(
-	function (a, b, c, d, e) {
-		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, apikey: d, index: e};
+var _user$project$Models$Model = F4(
+	function (a, b, c, d) {
+		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, index: d};
 	});
 var _user$project$Models$Hospital = F5(
 	function (a, b, c, d, e) {
 		return {name: a, address: b, city: c, state: d, zip: e};
 	});
-var _user$project$Models$Key = function (a) {
-	return {key: a};
-};
