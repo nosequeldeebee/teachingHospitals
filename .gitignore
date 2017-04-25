@@ -2,5 +2,5 @@
 teachingHospitals
 
 # static website files
-src/favicon.ico
-src/map.png
+src/static/favicon.ico
+src/static/map.png

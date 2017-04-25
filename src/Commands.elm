@@ -10,8 +10,8 @@ import RemoteData
 
 fetchKey : Cmd Msg
 fetchKey =
-    Http.send NewKey <|
-        Http.getString "http://trink.io:4001/google-api-key-boat-house"
+    Http.getString "http://trink.io:4001/google-api-key-boat-house"
+        |> Http.send NewKey
 
 
 fetchHospitals : Cmd Msg

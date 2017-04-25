@@ -51,7 +51,7 @@ processLink address city state key =
         fixedState =
             String.map replaceSpace state
     in
-        String.concat [ "https://maps.googleapis.com/maps/api/staticmap?center=", fixedAddress, "+", fixedCity, "+", fixedState, "&zoom=13&size=600x300&maptype=roadmap&key=", key ]
+        String.concat [ "https://maps.googleapis.com/maps/api/staticmap?center=", fixedAddress, "+", fixedCity, "+", fixedState, "&zoom=15&size=600x300&maptype=roadmap&key=", key ]
 
 
 replaceSpace : Char -> Char

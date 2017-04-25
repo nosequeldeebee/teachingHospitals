@@ -9771,7 +9771,7 @@ var _user$project$Commands$fetchHospitals = A2(
 var _user$project$Commands$fetchKey = A2(
 	_elm_lang$http$Http$send,
 	_user$project$Msgs$NewKey,
-	_elm_lang$http$Http$getString('http://localhost:4001/google-api-key-boat-house'));
+	_elm_lang$http$Http$getString('http://trink.io:4001/google-api-key-boat-house'));
 
 var _user$project$Hospitals$replaceSpace = function (c) {
 	return _elm_lang$core$Native_Utils.eq(
@@ -9804,7 +9804,7 @@ var _user$project$Hospitals$processLink = F4(
 									_0: fixedState,
 									_1: {
 										ctor: '::',
-										_0: '&zoom=13&size=600x300&maptype=roadmap&key=',
+										_0: '&zoom=15&size=600x300&maptype=roadmap&key=',
 										_1: {
 											ctor: '::',
 											_0: key,

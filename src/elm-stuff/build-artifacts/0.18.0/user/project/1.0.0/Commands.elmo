@@ -29,4 +29,4 @@ var _user$project$Commands$fetchHospitals = A2(
 var _user$project$Commands$fetchKey = A2(
 	_elm_lang$http$Http$send,
 	_user$project$Msgs$NewKey,
-	_elm_lang$http$Http$getString('http://localhost:4001/google-api-key-boat-house'));
+	_elm_lang$http$Http$getString('http://trink.io:4001/google-api-key-boat-house'));
