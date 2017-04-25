@@ -3,10 +3,15 @@ module Commands exposing (..)
 import Http
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (decode, required)
-import Msgs exposing (Msg)
+import Msgs exposing (..)
 import Models exposing (Hospital)
-import Models exposing (..)
 import RemoteData
+
+
+fetchKey : Cmd Msg
+fetchKey =
+    Http.send NewKey <|
+        Http.getString "http://trink.io:4001/google-api-key-boat-house"
 
 
 fetchHospitals : Cmd Msg

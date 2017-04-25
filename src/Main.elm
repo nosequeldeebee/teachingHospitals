@@ -5,12 +5,12 @@ import Msgs exposing (Msg)
 import Models exposing (Model, initialModel)
 import Update exposing (update)
 import View exposing (view)
-import Commands exposing (fetchHospitals)
+import Commands exposing (fetchHospitals, fetchKey)
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( initialModel, fetchHospitals )
+    ( initialModel, Cmd.batch [ fetchHospitals, fetchKey ] )
 
 
 subscriptions : Model -> Sub Msg

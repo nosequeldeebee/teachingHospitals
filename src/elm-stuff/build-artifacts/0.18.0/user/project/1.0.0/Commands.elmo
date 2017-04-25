@@ -26,3 +26,7 @@ var _user$project$Commands$fetchHospitals = A2(
 	_user$project$Msgs$OnFetchHospitals,
 	_krisajenkins$remotedata$RemoteData$sendRequest(
 		A2(_elm_lang$http$Http$get, _user$project$Commands$fetchHospitalsUrl, _user$project$Commands$hospitalsDecoder)));
+var _user$project$Commands$fetchKey = A2(
+	_elm_lang$http$Http$send,
+	_user$project$Msgs$NewKey,
+	_elm_lang$http$Http$getString('http://localhost:4001/google-api-key-boat-house'));

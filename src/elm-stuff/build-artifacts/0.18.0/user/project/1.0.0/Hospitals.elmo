@@ -3,8 +3,8 @@ var _user$project$Hospitals$replaceSpace = function (c) {
 		c,
 		_elm_lang$core$Native_Utils.chr(' ')) ? _elm_lang$core$Native_Utils.chr('+') : c;
 };
-var _user$project$Hospitals$processLink = F3(
-	function (address, city, state) {
+var _user$project$Hospitals$processLink = F4(
+	function (address, city, state, key) {
 		var fixedState = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, state);
 		var fixedCity = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, city);
 		var fixedAddress = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, address);
@@ -29,8 +29,12 @@ var _user$project$Hospitals$processLink = F3(
 									_0: fixedState,
 									_1: {
 										ctor: '::',
-										_0: '&zoom=13&size=600x300&maptype=roadmap',
-										_1: {ctor: '[]'}
+										_0: '&zoom=13&size=600x300&maptype=roadmap&key=',
+										_1: {
+											ctor: '::',
+											_0: key,
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}
@@ -39,28 +43,19 @@ var _user$project$Hospitals$processLink = F3(
 				}
 			});
 	});
-var _user$project$Hospitals$hospitalRow = function (hospital) {
-	return A2(
-		_elm_lang$html$Html$tr,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$td,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(hospital.name),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
+var _user$project$Hospitals$hospitalRow = F2(
+	function (key, hospital) {
+		return A2(
+			_elm_lang$html$Html$tr,
+			{ctor: '[]'},
+			{
 				ctor: '::',
 				_0: A2(
 					_elm_lang$html$Html$td,
 					{ctor: '[]'},
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html$text(hospital.address),
+						_0: _elm_lang$html$Html$text(hospital.name),
 						_1: {ctor: '[]'}
 					}),
 				_1: {
@@ -70,7 +65,7 @@ var _user$project$Hospitals$hospitalRow = function (hospital) {
 						{ctor: '[]'},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text(hospital.city),
+							_0: _elm_lang$html$Html$text(hospital.address),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
@@ -80,7 +75,7 @@ var _user$project$Hospitals$hospitalRow = function (hospital) {
 							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(hospital.state),
+								_0: _elm_lang$html$Html$text(hospital.city),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -90,84 +85,74 @@ var _user$project$Hospitals$hospitalRow = function (hospital) {
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html$text(hospital.zip),
+									_0: _elm_lang$html$Html$text(hospital.state),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
 								ctor: '::',
 								_0: A2(
-									_elm_lang$html$Html$a,
+									_elm_lang$html$Html$td,
+									{ctor: '[]'},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$href(
-											A3(_user$project$Hospitals$processLink, hospital.address, hospital.city, hospital.state)),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$target('_blank'),
-											_1: {ctor: '[]'}
-										}
-									},
-									{
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$img,
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$src('map.png'),
-												_1: {ctor: '[]'}
-											},
-											{ctor: '[]'}),
+										_0: _elm_lang$html$Html$text(hospital.zip),
 										_1: {ctor: '[]'}
 									}),
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$a,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$href(
+												A4(_user$project$Hospitals$processLink, hospital.address, hospital.city, hospital.state, key)),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$target('_blank'),
+												_1: {ctor: '[]'}
+											}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$img,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$src('map.png'),
+													_1: {ctor: '[]'}
+												},
+												{ctor: '[]'}),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
 							}
 						}
 					}
 				}
-			}
-		});
-};
-var _user$project$Hospitals$view = function (refreshedHospitals) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$table,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$thead,
-						{ctor: '[]'},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$tr,
-								{ctor: '[]'},
-								{
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$th,
-										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: A2(
-												_elm_lang$html$Html$button,
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortName),
-													_1: {ctor: '[]'}
-												},
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html$text('Name'),
-													_1: {ctor: '[]'}
-												}),
-											_1: {ctor: '[]'}
-										}),
-									_1: {
+			});
+	});
+var _user$project$Hospitals$view = F2(
+	function (refreshedHospitals, key) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$table,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$thead,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$tr,
+									{ctor: '[]'},
+									{
 										ctor: '::',
 										_0: A2(
 											_elm_lang$html$Html$th,
@@ -178,12 +163,12 @@ var _user$project$Hospitals$view = function (refreshedHospitals) {
 													_elm_lang$html$Html$button,
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortAddress),
+														_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortName),
 														_1: {ctor: '[]'}
 													},
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html$text('Address'),
+														_0: _elm_lang$html$Html$text('Name'),
 														_1: {ctor: '[]'}
 													}),
 												_1: {ctor: '[]'}
@@ -199,12 +184,12 @@ var _user$project$Hospitals$view = function (refreshedHospitals) {
 														_elm_lang$html$Html$button,
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortCity),
+															_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortAddress),
 															_1: {ctor: '[]'}
 														},
 														{
 															ctor: '::',
-															_0: _elm_lang$html$Html$text('City'),
+															_0: _elm_lang$html$Html$text('Address'),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
@@ -220,12 +205,12 @@ var _user$project$Hospitals$view = function (refreshedHospitals) {
 															_elm_lang$html$Html$button,
 															{
 																ctor: '::',
-																_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortState),
+																_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortCity),
 																_1: {ctor: '[]'}
 															},
 															{
 																ctor: '::',
-																_0: _elm_lang$html$Html$text('State'),
+																_0: _elm_lang$html$Html$text('City'),
 																_1: {ctor: '[]'}
 															}),
 														_1: {ctor: '[]'}
@@ -241,33 +226,57 @@ var _user$project$Hospitals$view = function (refreshedHospitals) {
 																_elm_lang$html$Html$button,
 																{
 																	ctor: '::',
-																	_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortZip),
+																	_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortState),
 																	_1: {ctor: '[]'}
 																},
 																{
 																	ctor: '::',
-																	_0: _elm_lang$html$Html$text('Zip'),
+																	_0: _elm_lang$html$Html$text('State'),
 																	_1: {ctor: '[]'}
 																}),
 															_1: {ctor: '[]'}
 														}),
-													_1: {ctor: '[]'}
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$th,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$button,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortZip),
+																		_1: {ctor: '[]'}
+																	},
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text('Zip'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}
 												}
 											}
 										}
-									}
-								}),
+									}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$tbody,
+								{ctor: '[]'},
+								A2(
+									_elm_lang$core$List$map,
+									_user$project$Hospitals$hospitalRow(key),
+									refreshedHospitals)),
 							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$tbody,
-							{ctor: '[]'},
-							A2(_elm_lang$core$List$map, _user$project$Hospitals$hospitalRow, refreshedHospitals)),
-						_1: {ctor: '[]'}
-					}
-				}),
-			_1: {ctor: '[]'}
-		});
-};
+						}
+					}),
+				_1: {ctor: '[]'}
+			});
+	});

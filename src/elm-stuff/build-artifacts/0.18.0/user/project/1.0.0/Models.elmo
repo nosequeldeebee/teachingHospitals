@@ -2,11 +2,12 @@ var _user$project$Models$initialModel = {
 	initialHospitals: {ctor: '[]'},
 	refreshedHospitals: {ctor: '[]'},
 	searchedHospitals: {ctor: '[]'},
-	index: 10
+	index: 10,
+	key: ''
 };
-var _user$project$Models$Model = F4(
-	function (a, b, c, d) {
-		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, index: d};
+var _user$project$Models$Model = F5(
+	function (a, b, c, d, e) {
+		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, index: d, key: e};
 	});
 var _user$project$Models$Hospital = F5(
 	function (a, b, c, d, e) {

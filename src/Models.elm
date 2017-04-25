@@ -8,6 +8,7 @@ type alias Model =
     , refreshedHospitals : List Hospital
     , searchedHospitals : List Hospital
     , index : Int
+    , key : String
     }
 
 
@@ -17,6 +18,7 @@ initialModel =
     , refreshedHospitals = []
     , searchedHospitals = []
     , index = 10
+    , key = ""
     }
 
 

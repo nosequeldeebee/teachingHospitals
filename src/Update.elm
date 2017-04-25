@@ -2,7 +2,6 @@ module Update exposing (..)
 
 import Msgs exposing (Msg)
 import Models exposing (Model, Hospital)
-import Models exposing (..)
 import RemoteData exposing (WebData)
 import Random exposing (..)
 
@@ -10,6 +9,12 @@ import Random exposing (..)
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        Msgs.NewKey (Ok key) ->
+            ( { model | key = key }, Cmd.none )
+
+        Msgs.NewKey (Err error) ->
+            ( { model | key = toString error }, Cmd.none )
+
         Msgs.OnFetchHospitals response ->
             ( { model | initialHospitals = updateInitial response, refreshedHospitals = updateInitial response, searchedHospitals = updateInitial response }, Cmd.none )
 

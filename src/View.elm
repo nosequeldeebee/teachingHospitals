@@ -12,12 +12,12 @@ view : Model -> Html Msg
 view model =
     div []
         [ input [ type_ "text", placeholder "Search", onInput Msgs.Change ] []
-        , page model
+        , page model model.key
         , br [] []
         , button [ onClick Msgs.NextPage ] [ text "Load More" ]
         ]
 
 
-page : Model -> Html Msg
-page model =
-    Hospitals.view (List.take model.index model.refreshedHospitals)
+page : Model -> String -> Html Msg
+page model key =
+    Hospitals.view (List.take model.index model.refreshedHospitals) key

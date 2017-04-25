@@ -1,7 +1,10 @@
-var _user$project$View$page = function (model) {
-	return _user$project$Hospitals$view(
-		A2(_elm_lang$core$List$take, model.index, model.refreshedHospitals));
-};
+var _user$project$View$page = F2(
+	function (model, key) {
+		return A2(
+			_user$project$Hospitals$view,
+			A2(_elm_lang$core$List$take, model.index, model.refreshedHospitals),
+			key);
+	});
 var _user$project$View$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -26,7 +29,7 @@ var _user$project$View$view = function (model) {
 				{ctor: '[]'}),
 			_1: {
 				ctor: '::',
-				_0: _user$project$View$page(model),
+				_0: A2(_user$project$View$page, model, model.key),
 				_1: {
 					ctor: '::',
 					_0: A2(
