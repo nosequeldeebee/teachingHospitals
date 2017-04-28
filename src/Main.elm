@@ -8,9 +8,16 @@ import View exposing (view)
 import Commands exposing (fetchHospitals, fetchKey)
 
 
+-- Load hospitals and Google API key into memory
+
+
 init : ( Model, Cmd Msg )
 init =
     ( initialModel, Cmd.batch [ fetchHospitals, fetchKey ] )
+
+
+
+-- SUBSCRIPTIONS
 
 
 subscriptions : Model -> Sub Msg

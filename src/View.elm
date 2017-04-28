@@ -18,6 +18,10 @@ view model =
         ]
 
 
+
+-- Hospitals data called in a separate function for code cleanliness
+
+
 page : Model -> String -> Html Msg
 page model key =
     Hospitals.view (List.take model.index model.refreshedHospitals) key

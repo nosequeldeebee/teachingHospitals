@@ -9,6 +9,9 @@ import Models exposing (..)
 import RemoteData exposing (WebData)
 
 
+-- Table columns and rows with loaded hospital info from memory
+
+
 view : List Hospital -> String -> Html Msg
 view refreshedHospitals key =
     div []
@@ -37,6 +40,10 @@ hospitalRow key hospital =
         , td [] [ text hospital.zip ]
         , a [ href (processLink hospital.address hospital.city hospital.state key), target "_blank" ] [ (img [ src "map.png" ] []) ]
         ]
+
+
+
+--Create Google Static Map API call
 
 
 processLink : String -> String -> String -> String -> String

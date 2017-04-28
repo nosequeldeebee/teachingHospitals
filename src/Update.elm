@@ -9,18 +9,22 @@ import Random exposing (..)
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        -- Google API key retrieval
         Msgs.NewKey (Ok key) ->
             ( { model | key = key }, Cmd.none )
 
         Msgs.NewKey (Err error) ->
             ( { model | key = toString error }, Cmd.none )
 
+        -- Hospitals list retrieval from JSON API
         Msgs.OnFetchHospitals response ->
             ( { model | initialHospitals = updateInitial response, refreshedHospitals = updateInitial response, searchedHospitals = updateInitial response }, Cmd.none )
 
+        -- When user types search term
         Msgs.Change keyword ->
             ( { model | refreshedHospitals = List.filterMap (refresh keyword) model.initialHospitals, searchedHospitals = List.filterMap (refresh keyword) model.initialHospitals, index = 10 }, Cmd.none )
 
+        -- Sorting column headers
         Msgs.SortName ->
             ( { model | searchedHospitals = List.sortBy .name model.initialHospitals, refreshedHospitals = List.sortBy .name model.initialHospitals, index = 10 }, Cmd.none )
 
@@ -36,6 +40,7 @@ update msg model =
         Msgs.SortZip ->
             ( { model | searchedHospitals = List.sortBy .zip model.initialHospitals, refreshedHospitals = List.sortBy .zip model.initialHospitals, index = 10 }, Cmd.none )
 
+        --Load more data onto page
         Msgs.NextPage ->
             ( { model | refreshedHospitals = List.take (model.index + 10) model.searchedHospitals, index = model.index + 10 }, Cmd.none )
 
@@ -54,6 +59,10 @@ updateInitial response =
 
         RemoteData.Success hospitals ->
             hospitals
+
+
+
+-- Capitalize search string to match API data format
 
 
 refresh : String -> Hospital -> Maybe Hospital
