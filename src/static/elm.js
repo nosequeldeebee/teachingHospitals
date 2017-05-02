@@ -9710,7 +9710,11 @@ var _krisajenkins$remotedata$RemoteData$update = F2(
 
 var _user$project$Models$initialModel = {
 	initialHospitals: {ctor: '[]'},
-	refreshedHospitals: {ctor: '[]'},
+	refreshedHospitals: {
+		ctor: '::',
+		_0: {name: 'Loading...', address: '', city: '', state: '', zip: ''},
+		_1: {ctor: '[]'}
+	},
 	searchedHospitals: {ctor: '[]'},
 	index: 10,
 	key: ''

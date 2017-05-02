@@ -15,7 +15,8 @@ type alias Model =
 initialModel : Model
 initialModel =
     { initialHospitals = []
-    , refreshedHospitals = []
+    , refreshedHospitals =
+        [ { name = "Loading...", address = "", city = "", state = "", zip = "" } ]
     , searchedHospitals = []
     , index = 10
     , key = ""
