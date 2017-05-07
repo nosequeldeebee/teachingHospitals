@@ -38,17 +38,20 @@ hospitalRow key hospital =
         , td [] [ text hospital.city ]
         , td [] [ text hospital.state ]
         , td [] [ text hospital.zip ]
-        , a [ href (processLink hospital.address hospital.city hospital.state key), target "_blank" ] [ (img [ src "map.png" ] []) ]
+        , iframe [ src (processLink hospital.name hospital.address hospital.city hospital.state key) ] []
         ]
 
 
 
---Create Google Static Map API call
+--Create Google Maps Emped API call
 
 
-processLink : String -> String -> String -> String -> String
-processLink address city state key =
+processLink : String -> String -> String -> String -> String -> String
+processLink name address city state key =
     let
+        fixedName =
+            String.map replaceSpace name
+
         fixedAddress =
             String.map replaceSpace address
 
@@ -58,7 +61,7 @@ processLink address city state key =
         fixedState =
             String.map replaceSpace state
     in
-        String.concat [ "https://maps.googleapis.com/maps/api/staticmap?center=", fixedAddress, "+", fixedCity, "+", fixedState, "&zoom=15&size=600x300&maptype=roadmap&key=", key ]
+        String.concat [ "https://www.google.com/maps/embed/v1/place?key=", key, "&q=", fixedName, "+", fixedAddress, "+", fixedCity, "+", fixedState ]
 
 
 replaceSpace : Char -> Char

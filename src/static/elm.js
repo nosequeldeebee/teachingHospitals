@@ -9782,37 +9782,46 @@ var _user$project$Hospitals$replaceSpace = function (c) {
 		c,
 		_elm_lang$core$Native_Utils.chr(' ')) ? _elm_lang$core$Native_Utils.chr('+') : c;
 };
-var _user$project$Hospitals$processLink = F4(
-	function (address, city, state, key) {
+var _user$project$Hospitals$processLink = F5(
+	function (name, address, city, state, key) {
 		var fixedState = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, state);
 		var fixedCity = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, city);
 		var fixedAddress = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, address);
+		var fixedName = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, name);
 		return _elm_lang$core$String$concat(
 			{
 				ctor: '::',
-				_0: 'https://maps.googleapis.com/maps/api/staticmap?center=',
+				_0: 'https://www.google.com/maps/embed/v1/place?key=',
 				_1: {
 					ctor: '::',
-					_0: fixedAddress,
+					_0: key,
 					_1: {
 						ctor: '::',
-						_0: '+',
+						_0: '&q=',
 						_1: {
 							ctor: '::',
-							_0: fixedCity,
+							_0: fixedName,
 							_1: {
 								ctor: '::',
 								_0: '+',
 								_1: {
 									ctor: '::',
-									_0: fixedState,
+									_0: fixedAddress,
 									_1: {
 										ctor: '::',
-										_0: '&zoom=15&size=600x300&maptype=roadmap&key=',
+										_0: '+',
 										_1: {
 											ctor: '::',
-											_0: key,
-											_1: {ctor: '[]'}
+											_0: fixedCity,
+											_1: {
+												ctor: '::',
+												_0: '+',
+												_1: {
+													ctor: '::',
+													_0: fixedState,
+													_1: {ctor: '[]'}
+												}
+											}
 										}
 									}
 								}
@@ -9880,30 +9889,42 @@ var _user$project$Hospitals$hospitalRow = F2(
 								_1: {
 									ctor: '::',
 									_0: A2(
-										_elm_lang$html$Html$a,
+										_elm_lang$html$Html$iframe,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$href(
-												A4(_user$project$Hospitals$processLink, hospital.address, hospital.city, hospital.state, key)),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$target('_blank'),
-												_1: {ctor: '[]'}
-											}
-										},
-										{
-											ctor: '::',
-											_0: A2(
-												_elm_lang$html$Html$img,
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$src('map.png'),
-													_1: {ctor: '[]'}
-												},
-												{ctor: '[]'}),
+											_0: _elm_lang$html$Html_Attributes$src(
+												A5(_user$project$Hospitals$processLink, hospital.name, hospital.address, hospital.city, hospital.state, key)),
 											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
+										},
+										{ctor: '[]'}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$a,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$href(
+													A5(_user$project$Hospitals$processLink, hospital.name, hospital.address, hospital.city, hospital.state, key)),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$target('_blank'),
+													_1: {ctor: '[]'}
+												}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$img,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$src('map.png'),
+														_1: {ctor: '[]'}
+													},
+													{ctor: '[]'}),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
 								}
 							}
 						}
