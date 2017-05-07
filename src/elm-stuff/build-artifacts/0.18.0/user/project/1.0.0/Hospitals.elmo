@@ -9,7 +9,7 @@ var _user$project$Hospitals$processLink = F5(
 		var fixedCity = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, city);
 		var fixedAddress = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, address);
 		var fixedName = A2(_elm_lang$core$String$map, _user$project$Hospitals$replaceSpace, name);
-		return _elm_lang$core$String$concat(
+		return _elm_lang$core$Native_Utils.eq(key, '') ? '' : _elm_lang$core$String$concat(
 			{
 				ctor: '::',
 				_0: 'https://www.google.com/maps/embed/v1/place?key=',
@@ -118,34 +118,7 @@ var _user$project$Hospitals$hospitalRow = F2(
 											_1: {ctor: '[]'}
 										},
 										{ctor: '[]'}),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$a,
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$href(
-													A5(_user$project$Hospitals$processLink, hospital.name, hospital.address, hospital.city, hospital.state, key)),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$target('_blank'),
-													_1: {ctor: '[]'}
-												}
-											},
-											{
-												ctor: '::',
-												_0: A2(
-													_elm_lang$html$Html$img,
-													{
-														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$src('map.png'),
-														_1: {ctor: '[]'}
-													},
-													{ctor: '[]'}),
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									}
+									_1: {ctor: '[]'}
 								}
 							}
 						}
