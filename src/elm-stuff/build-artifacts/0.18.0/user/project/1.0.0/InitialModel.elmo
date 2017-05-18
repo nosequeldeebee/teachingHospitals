@@ -1,0 +1,9 @@
+var _user$project$InitialModel$initialModel = {
+	initialHospitals: {ctor: '[]'},
+	refreshedHospitals: A2(
+		_jschomay$elm_paginate$Paginate$fromList,
+		1,
+		_user$project$WebResponse$updateInitial(_krisajenkins$remotedata$RemoteData$Loading)),
+	searchedHospitals: {ctor: '[]'},
+	key: ''
+};

@@ -5,48 +5,17 @@ var _user$project$Update$refresh = F2(
 			_elm_lang$core$String$toUpper(keyword),
 			h.name) ? _elm_lang$core$Maybe$Just(h) : _elm_lang$core$Maybe$Nothing;
 	});
-var _user$project$Update$updateInitial = function (response) {
-	var _p0 = response;
-	switch (_p0.ctor) {
-		case 'NotAsked':
-			return {
-				ctor: '::',
-				_0: {name: '', address: '', city: '', state: '', zip: ''},
-				_1: {ctor: '[]'}
-			};
-		case 'Loading':
-			return {
-				ctor: '::',
-				_0: {name: 'Loading...', address: '', city: '', state: '', zip: ''},
-				_1: {ctor: '[]'}
-			};
-		case 'Failure':
-			return {
-				ctor: '::',
-				_0: {
-					name: _elm_lang$core$Basics$toString(_p0._0),
-					address: '',
-					city: '',
-					state: '',
-					zip: ''
-				},
-				_1: {ctor: '[]'}
-			};
-		default:
-			return _p0._0;
-	}
-};
 var _user$project$Update$update = F2(
 	function (msg, model) {
-		var _p1 = msg;
-		switch (_p1.ctor) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
 			case 'NewKey':
-				if (_p1._0.ctor === 'Ok') {
+				if (_p0._0.ctor === 'Ok') {
 					return {
 						ctor: '_Tuple2',
 						_0: _elm_lang$core$Native_Utils.update(
 							model,
-							{key: _p1._0._0}),
+							{key: _p0._0._0}),
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
 				} else {
@@ -55,29 +24,29 @@ var _user$project$Update$update = F2(
 						_0: _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								key: _elm_lang$core$Basics$toString(_p1._0._0)
+								key: _elm_lang$core$Basics$toString(_p0._0._0)
 							}),
 						_1: _elm_lang$core$Platform_Cmd$none
 					};
 				}
 			case 'OnFetchHospitals':
-				var _p2 = _p1._0;
+				var _p1 = _p0._0;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							initialHospitals: _user$project$Update$updateInitial(_p2),
+							initialHospitals: _user$project$WebResponse$updateInitial(_p1),
 							refreshedHospitals: A2(
 								_jschomay$elm_paginate$Paginate$fromList,
 								10,
-								_user$project$Update$updateInitial(_p2)),
-							searchedHospitals: _user$project$Update$updateInitial(_p2)
+								_user$project$WebResponse$updateInitial(_p1)),
+							searchedHospitals: _user$project$WebResponse$updateInitial(_p1)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Change':
-				var _p3 = _p1._0;
+				var _p2 = _p0._0;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -88,11 +57,11 @@ var _user$project$Update$update = F2(
 								10,
 								A2(
 									_elm_lang$core$List$filterMap,
-									_user$project$Update$refresh(_p3),
+									_user$project$Update$refresh(_p2),
 									model.initialHospitals)),
 							searchedHospitals: A2(
 								_elm_lang$core$List$filterMap,
-								_user$project$Update$refresh(_p3),
+								_user$project$Update$refresh(_p2),
 								model.initialHospitals)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none

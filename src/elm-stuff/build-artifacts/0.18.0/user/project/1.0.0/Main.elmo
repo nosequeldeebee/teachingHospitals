@@ -3,7 +3,7 @@ var _user$project$Main$subscriptions = function (model) {
 };
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
-	_0: _user$project$Models$initialModel,
+	_0: _user$project$InitialModel$initialModel,
 	_1: _elm_lang$core$Platform_Cmd$batch(
 		{
 			ctor: '::',

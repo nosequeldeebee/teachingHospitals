@@ -5,6 +5,7 @@ import Models exposing (Model, Hospital)
 import RemoteData exposing (WebData)
 import Random exposing (..)
 import Paginate exposing (..)
+import WebResponse exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -19,27 +20,77 @@ update msg model =
 
         -- Hospitals list retrieval from JSON API
         Msgs.OnFetchHospitals response ->
-            ( { model | initialHospitals = updateInitial response, refreshedHospitals = Paginate.fromList 10 (updateInitial response), searchedHospitals = updateInitial response }, Cmd.none )
+            ( { model
+                | initialHospitals = updateInitial response
+                , refreshedHospitals =
+                    Paginate.fromList 10 <|
+                        updateInitial response
+                , searchedHospitals = updateInitial response
+              }
+            , Cmd.none
+            )
 
         -- When user types search term
         Msgs.Change keyword ->
-            ( { model | refreshedHospitals = Paginate.fromList 10 (List.filterMap (refresh keyword) model.initialHospitals), searchedHospitals = List.filterMap (refresh keyword) model.initialHospitals }, Cmd.none )
+            ( { model
+                | refreshedHospitals =
+                    Paginate.fromList 10 <|
+                        List.filterMap (refresh keyword) model.initialHospitals
+                , searchedHospitals = List.filterMap (refresh keyword) model.initialHospitals
+              }
+            , Cmd.none
+            )
 
         -- Sorting column headers
         Msgs.SortName ->
-            ( { model | searchedHospitals = List.sortBy .name model.initialHospitals, refreshedHospitals = Paginate.fromList 10 (List.sortBy .name model.initialHospitals) }, Cmd.none )
+            ( { model
+                | searchedHospitals = List.sortBy .name model.initialHospitals
+                , refreshedHospitals =
+                    Paginate.fromList 10 <|
+                        List.sortBy .name model.initialHospitals
+              }
+            , Cmd.none
+            )
 
         Msgs.SortAddress ->
-            ( { model | searchedHospitals = List.sortBy .address model.initialHospitals, refreshedHospitals = Paginate.fromList 10 (List.sortBy .address model.initialHospitals) }, Cmd.none )
+            ( { model
+                | searchedHospitals = List.sortBy .address model.initialHospitals
+                , refreshedHospitals =
+                    Paginate.fromList 10 <|
+                        List.sortBy .address model.initialHospitals
+              }
+            , Cmd.none
+            )
 
         Msgs.SortCity ->
-            ( { model | searchedHospitals = List.sortBy .city model.initialHospitals, refreshedHospitals = Paginate.fromList 10 (List.sortBy .city model.initialHospitals) }, Cmd.none )
+            ( { model
+                | searchedHospitals = List.sortBy .city model.initialHospitals
+                , refreshedHospitals =
+                    Paginate.fromList 10 <|
+                        List.sortBy .city model.initialHospitals
+              }
+            , Cmd.none
+            )
 
         Msgs.SortState ->
-            ( { model | searchedHospitals = List.sortBy .state model.initialHospitals, refreshedHospitals = Paginate.fromList 10 (List.sortBy .state model.initialHospitals) }, Cmd.none )
+            ( { model
+                | searchedHospitals = List.sortBy .state model.initialHospitals
+                , refreshedHospitals =
+                    Paginate.fromList 10 <|
+                        List.sortBy .state model.initialHospitals
+              }
+            , Cmd.none
+            )
 
         Msgs.SortZip ->
-            ( { model | searchedHospitals = List.sortBy .zip model.initialHospitals, refreshedHospitals = Paginate.fromList 10 (List.sortBy .zip model.initialHospitals) }, Cmd.none )
+            ( { model
+                | searchedHospitals = List.sortBy .zip model.initialHospitals
+                , refreshedHospitals =
+                    Paginate.fromList 10 <|
+                        List.sortBy .zip model.initialHospitals
+              }
+            , Cmd.none
+            )
 
         -- Navigate Pages
         Msgs.Next ->
@@ -47,22 +98,6 @@ update msg model =
 
         Msgs.Prev ->
             ( { model | refreshedHospitals = Paginate.prev model.refreshedHospitals }, Cmd.none )
-
-
-updateInitial : WebData (List Hospital) -> List Hospital
-updateInitial response =
-    case response of
-        RemoteData.NotAsked ->
-            [ { name = "", address = "", city = "", state = "", zip = "" } ]
-
-        RemoteData.Loading ->
-            [ { name = "Loading...", address = "", city = "", state = "", zip = "" } ]
-
-        RemoteData.Failure error ->
-            [ { name = toString error, address = "", city = "", state = "", zip = "" } ]
-
-        RemoteData.Success hospitals ->
-            hospitals
 
 
 

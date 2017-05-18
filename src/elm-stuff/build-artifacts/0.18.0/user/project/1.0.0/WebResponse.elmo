@@ -1,0 +1,31 @@
+var _user$project$WebResponse$updateInitial = function (response) {
+	var _p0 = response;
+	switch (_p0.ctor) {
+		case 'NotAsked':
+			return {
+				ctor: '::',
+				_0: {name: '', address: '', city: '', state: '', zip: ''},
+				_1: {ctor: '[]'}
+			};
+		case 'Loading':
+			return {
+				ctor: '::',
+				_0: {name: 'Loading...', address: '', city: '', state: '', zip: ''},
+				_1: {ctor: '[]'}
+			};
+		case 'Failure':
+			return {
+				ctor: '::',
+				_0: {
+					name: _elm_lang$core$Basics$toString(_p0._0),
+					address: '',
+					city: '',
+					state: '',
+					zip: ''
+				},
+				_1: {ctor: '[]'}
+			};
+		default:
+			return _p0._0;
+	}
+};

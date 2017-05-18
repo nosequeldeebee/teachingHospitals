@@ -1,16 +1,3 @@
-var _user$project$Models$initialModel = {
-	initialHospitals: {ctor: '[]'},
-	refreshedHospitals: A2(
-		_jschomay$elm_paginate$Paginate$fromList,
-		10,
-		{
-			ctor: '::',
-			_0: {name: 'Loading...', address: '', city: '', state: '', zip: ''},
-			_1: {ctor: '[]'}
-		}),
-	searchedHospitals: {ctor: '[]'},
-	key: ''
-};
 var _user$project$Models$Model = F4(
 	function (a, b, c, d) {
 		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, key: d};

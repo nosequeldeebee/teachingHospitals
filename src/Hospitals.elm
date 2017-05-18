@@ -64,7 +64,18 @@ processLink name address city state key =
         if key == "" then
             ""
         else
-            String.concat [ "https://www.google.com/maps/embed/v1/place?key=", key, "&q=", fixedName, "+", fixedAddress, "+", fixedCity, "+", fixedState ]
+            String.concat
+                [ "https://www.google.com/maps/embed/v1/place?key="
+                , key
+                , "&q="
+                , fixedName
+                , "+"
+                , fixedAddress
+                , "+"
+                , fixedCity
+                , "+"
+                , fixedState
+                ]
 
 
 replaceSpace : Char -> Char
