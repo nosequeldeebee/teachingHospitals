@@ -6,6 +6,7 @@ import Html.Events exposing (..)
 import Msgs exposing (Msg)
 import Models exposing (Model)
 import Hospitals
+import Paginate exposing (..)
 
 
 view : Model -> Html Msg
@@ -14,7 +15,10 @@ view model =
         [ input [ type_ "text", placeholder "Search", onInput Msgs.Change ] []
         , page model model.key
         , br [] []
-        , button [ onClick Msgs.NextPage ] [ text "Load More" ]
+        , div [ style [ ( "text-align", "center" ) ] ]
+            [ button [ onClick Msgs.Prev, disabled <| Paginate.isFirst model.refreshedHospitals ] [ text "Prev" ]
+            , button [ onClick Msgs.Next, disabled <| Paginate.isLast model.refreshedHospitals ] [ text "Next" ]
+            ]
         ]
 
 
@@ -24,4 +28,5 @@ view model =
 
 page : Model -> String -> Html Msg
 page model key =
-    Hospitals.view (List.take model.index model.refreshedHospitals) key
+    --    Hospitals.view (List.take 10 (Paginate.page model.refreshedHospitals)) key
+    Hospitals.view (Paginate.page model.refreshedHospitals) key

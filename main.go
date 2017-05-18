@@ -13,11 +13,11 @@ import (
 )
 
 type hospital struct {
-	Name    string `json:"name"`
-	Address string `json:"address"`
-	City    string `json:"city"`
-	State   string `json:"state"`
-	Zip     string `json:"zip"`
+	Name string `json:"name"`
+	//	Address string `json:"address"`
+	//	City    string `json:"city"`
+	//	State   string `json:"state"`
+	Zip string `json:"zip"`
 }
 
 var hospitals []hospital
@@ -53,8 +53,9 @@ func main() {
 		if err != nil {
 			log.Fatal("couldn't scan db results", err)
 		}
-
-		hospitals = append(hospitals, hospital{Name: name, Address: address, City: city, State: state, Zip: zip})
+		//
+		//hospitals = append(hospitals, hospital{Name: name, Address: address, City: city, State: state, Zip: zip})
+		hospitals = append(hospitals, hospital{Name: name, Zip: zip})
 	}
 
 	if err := rows.Err(); err != nil {

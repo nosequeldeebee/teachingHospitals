@@ -68,7 +68,10 @@ var _user$project$Update$update = F2(
 						model,
 						{
 							initialHospitals: _user$project$Update$updateInitial(_p2),
-							refreshedHospitals: _user$project$Update$updateInitial(_p2),
+							refreshedHospitals: A2(
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								_user$project$Update$updateInitial(_p2)),
 							searchedHospitals: _user$project$Update$updateInitial(_p2)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
@@ -81,14 +84,16 @@ var _user$project$Update$update = F2(
 						model,
 						{
 							refreshedHospitals: A2(
-								_elm_lang$core$List$filterMap,
-								_user$project$Update$refresh(_p3),
-								model.initialHospitals),
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$filterMap,
+									_user$project$Update$refresh(_p3),
+									model.initialHospitals)),
 							searchedHospitals: A2(
 								_elm_lang$core$List$filterMap,
 								_user$project$Update$refresh(_p3),
-								model.initialHospitals),
-							index: 10
+								model.initialHospitals)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -105,12 +110,14 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.name;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.name;
+									},
+									model.initialHospitals))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -127,12 +134,14 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.address;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.address;
+									},
+									model.initialHospitals))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -149,12 +158,14 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.city;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.city;
+									},
+									model.initialHospitals))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -171,12 +182,14 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.state;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.state;
+									},
+									model.initialHospitals))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -193,12 +206,24 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.zip;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.zip;
+									},
+									model.initialHospitals))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'Next':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: _jschomay$elm_paginate$Paginate$next(model.refreshedHospitals)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -208,8 +233,7 @@ var _user$project$Update$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							refreshedHospitals: A2(_elm_lang$core$List$take, model.index + 10, model.searchedHospitals),
-							index: model.index + 10
+							refreshedHospitals: _jschomay$elm_paginate$Paginate$prev(model.refreshedHospitals)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};

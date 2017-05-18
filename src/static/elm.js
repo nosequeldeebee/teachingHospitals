@@ -9492,6 +9492,232 @@ var _elm_lang$http$Http$StringPart = F2(
 	});
 var _elm_lang$http$Http$stringPart = _elm_lang$http$Http$StringPart;
 
+var _jschomay$elm_bounded_number$Number_Bounded$maxBound = function (_p0) {
+	var _p1 = _p0;
+	return _p1._0.max;
+};
+var _jschomay$elm_bounded_number$Number_Bounded$minBound = function (_p2) {
+	var _p3 = _p2;
+	return _p3._0.min;
+};
+var _jschomay$elm_bounded_number$Number_Bounded$value = function (_p4) {
+	var _p5 = _p4;
+	return _p5._0.value;
+};
+var _jschomay$elm_bounded_number$Number_Bounded$Bounded = function (a) {
+	return {ctor: 'Bounded', _0: a};
+};
+var _jschomay$elm_bounded_number$Number_Bounded$between = F2(
+	function (a, b) {
+		return (_elm_lang$core$Native_Utils.cmp(a, b) < 0) ? _jschomay$elm_bounded_number$Number_Bounded$Bounded(
+			{min: a, max: b, value: a}) : _jschomay$elm_bounded_number$Number_Bounded$Bounded(
+			{min: b, max: a, value: b});
+	});
+var _jschomay$elm_bounded_number$Number_Bounded$set = F2(
+	function (value, _p6) {
+		var _p7 = _p6;
+		var _p9 = _p7._0.min;
+		var _p8 = _p7._0.max;
+		return _jschomay$elm_bounded_number$Number_Bounded$Bounded(
+			{
+				min: _p9,
+				max: _p8,
+				value: A2(
+					_elm_lang$core$Basics$max,
+					_p9,
+					A2(_elm_lang$core$Basics$min, _p8, value))
+			});
+	});
+var _jschomay$elm_bounded_number$Number_Bounded$inc = F2(
+	function (by, _p10) {
+		var _p11 = _p10;
+		var _p12 = _p11._0.max;
+		return _jschomay$elm_bounded_number$Number_Bounded$Bounded(
+			{
+				min: _p11._0.min,
+				max: _p12,
+				value: A2(_elm_lang$core$Basics$min, _p12, _p11._0.value + by)
+			});
+	});
+var _jschomay$elm_bounded_number$Number_Bounded$dec = F2(
+	function (by, _p13) {
+		var _p14 = _p13;
+		var _p15 = _p14._0.min;
+		return _jschomay$elm_bounded_number$Number_Bounded$Bounded(
+			{
+				min: _p15,
+				max: _p14._0.max,
+				value: A2(_elm_lang$core$Basics$max, _p15, _p14._0.value - by)
+			});
+	});
+
+var _jschomay$elm_paginate$Paginate_Custom$pager = F2(
+	function (f, _p0) {
+		var _p1 = _p0;
+		var _p2 = _p1._0.currentPage;
+		return A2(
+			_elm_lang$core$List$map,
+			function (i) {
+				return A2(
+					f,
+					i,
+					_elm_lang$core$Native_Utils.eq(
+						i,
+						_jschomay$elm_bounded_number$Number_Bounded$value(_p2)));
+			},
+			A2(
+				_elm_lang$core$List$range,
+				1,
+				_jschomay$elm_bounded_number$Number_Bounded$maxBound(_p2)));
+	});
+var _jschomay$elm_paginate$Paginate_Custom$page = F2(
+	function (sliceFn, _p3) {
+		var _p4 = _p3;
+		var _p5 = _p4._0.itemsPerPage;
+		var from = (_jschomay$elm_bounded_number$Number_Bounded$value(_p4._0.currentPage) - 1) * _p5;
+		var to = from + _p5;
+		return A3(sliceFn, from, to, _p4._0.items);
+	});
+var _jschomay$elm_paginate$Paginate_Custom$foldMap = F2(
+	function (f, _p6) {
+		var _p7 = _p6;
+		return f(_p7._0.items);
+	});
+var _jschomay$elm_paginate$Paginate_Custom$totalPages = function (_p8) {
+	var _p9 = _p8;
+	return _jschomay$elm_bounded_number$Number_Bounded$maxBound(_p9._0.currentPage);
+};
+var _jschomay$elm_paginate$Paginate_Custom$itemsPerPage = function (_p10) {
+	var _p11 = _p10;
+	return _p11._0.itemsPerPage;
+};
+var _jschomay$elm_paginate$Paginate_Custom$currentPage = function (_p12) {
+	var _p13 = _p12;
+	return _jschomay$elm_bounded_number$Number_Bounded$value(_p13._0.currentPage);
+};
+var _jschomay$elm_paginate$Paginate_Custom$isLast = function (_p14) {
+	var _p15 = _p14;
+	var _p16 = _p15._0.currentPage;
+	return _elm_lang$core$Native_Utils.eq(
+		_jschomay$elm_bounded_number$Number_Bounded$value(_p16),
+		_jschomay$elm_bounded_number$Number_Bounded$maxBound(_p16));
+};
+var _jschomay$elm_paginate$Paginate_Custom$isFirst = function (_p17) {
+	var _p18 = _p17;
+	return _elm_lang$core$Native_Utils.eq(
+		_jschomay$elm_bounded_number$Number_Bounded$value(_p18._0.currentPage),
+		1);
+};
+var _jschomay$elm_paginate$Paginate_Custom$Paginated = function (a) {
+	return {ctor: 'Paginated', _0: a};
+};
+var _jschomay$elm_paginate$Paginate_Custom$init = F3(
+	function (lengthFn, itemsPerPage, items) {
+		var max = _elm_lang$core$Native_Utils.eq(
+			lengthFn(items),
+			0) ? 1 : _elm_lang$core$Basics$ceiling(
+			_elm_lang$core$Basics$toFloat(
+				lengthFn(items)) / _elm_lang$core$Basics$toFloat(
+				A2(_elm_lang$core$Basics$max, 1, itemsPerPage)));
+		return _jschomay$elm_paginate$Paginate_Custom$Paginated(
+			{
+				itemsPerPage: A2(_elm_lang$core$Basics$max, 1, itemsPerPage),
+				currentPage: A2(_jschomay$elm_bounded_number$Number_Bounded$between, 1, max),
+				items: items
+			});
+	});
+var _jschomay$elm_paginate$Paginate_Custom$goTo = F2(
+	function (i, _p19) {
+		var _p20 = _p19;
+		var _p21 = _p20._0;
+		return _jschomay$elm_paginate$Paginate_Custom$Paginated(
+			_elm_lang$core$Native_Utils.update(
+				_p21,
+				{
+					currentPage: A2(_jschomay$elm_bounded_number$Number_Bounded$set, i, _p21.currentPage)
+				}));
+	});
+var _jschomay$elm_paginate$Paginate_Custom$map = F3(
+	function (lengthFn, f, _p22) {
+		var _p23 = _p22;
+		return A2(
+			_jschomay$elm_paginate$Paginate_Custom$goTo,
+			_jschomay$elm_bounded_number$Number_Bounded$value(_p23._0.currentPage),
+			A3(
+				_jschomay$elm_paginate$Paginate_Custom$init,
+				lengthFn,
+				_p23._0.itemsPerPage,
+				f(_p23._0.items)));
+	});
+var _jschomay$elm_paginate$Paginate_Custom$changeItemsPerPage = F3(
+	function (lengthFn, newItemsPerPage, _p24) {
+		var _p25 = _p24;
+		return A2(
+			_jschomay$elm_paginate$Paginate_Custom$goTo,
+			_jschomay$elm_bounded_number$Number_Bounded$value(_p25._0.currentPage),
+			A3(_jschomay$elm_paginate$Paginate_Custom$init, lengthFn, newItemsPerPage, _p25._0.items));
+	});
+var _jschomay$elm_paginate$Paginate_Custom$first = function (paginatedList) {
+	return A2(_jschomay$elm_paginate$Paginate_Custom$goTo, 1, paginatedList);
+};
+var _jschomay$elm_paginate$Paginate_Custom$last = function (paginatedList) {
+	return A2(
+		_jschomay$elm_paginate$Paginate_Custom$goTo,
+		_jschomay$elm_paginate$Paginate_Custom$totalPages(paginatedList),
+		paginatedList);
+};
+var _jschomay$elm_paginate$Paginate_Custom$next = function (_p26) {
+	var _p27 = _p26;
+	var _p28 = _p27._0;
+	return _jschomay$elm_paginate$Paginate_Custom$Paginated(
+		_elm_lang$core$Native_Utils.update(
+			_p28,
+			{
+				currentPage: A2(_jschomay$elm_bounded_number$Number_Bounded$inc, 1, _p28.currentPage)
+			}));
+};
+var _jschomay$elm_paginate$Paginate_Custom$prev = function (_p29) {
+	var _p30 = _p29;
+	var _p31 = _p30._0;
+	return _jschomay$elm_paginate$Paginate_Custom$Paginated(
+		_elm_lang$core$Native_Utils.update(
+			_p31,
+			{
+				currentPage: A2(_jschomay$elm_bounded_number$Number_Bounded$dec, 1, _p31.currentPage)
+			}));
+};
+
+var _jschomay$elm_paginate$Paginate$pager = _jschomay$elm_paginate$Paginate_Custom$pager;
+var _jschomay$elm_paginate$Paginate$page = _jschomay$elm_paginate$Paginate_Custom$page(
+	F2(
+		function (from, to) {
+			return function (_p0) {
+				return A2(
+					_elm_lang$core$List$take,
+					to - from,
+					A2(_elm_lang$core$List$drop, from, _p0));
+			};
+		}));
+var _jschomay$elm_paginate$Paginate$foldMap = _jschomay$elm_paginate$Paginate_Custom$foldMap;
+var _jschomay$elm_paginate$Paginate$allItems = _jschomay$elm_paginate$Paginate_Custom$foldMap(_elm_lang$core$Basics$identity);
+var _jschomay$elm_paginate$Paginate$totalPages = _jschomay$elm_paginate$Paginate_Custom$totalPages;
+var _jschomay$elm_paginate$Paginate$itemsPerPage = _jschomay$elm_paginate$Paginate_Custom$itemsPerPage;
+var _jschomay$elm_paginate$Paginate$currentPage = _jschomay$elm_paginate$Paginate_Custom$currentPage;
+var _jschomay$elm_paginate$Paginate$length = _jschomay$elm_paginate$Paginate_Custom$foldMap(_elm_lang$core$List$length);
+var _jschomay$elm_paginate$Paginate$isLast = _jschomay$elm_paginate$Paginate_Custom$isLast;
+var _jschomay$elm_paginate$Paginate$isFirst = _jschomay$elm_paginate$Paginate_Custom$isFirst;
+var _jschomay$elm_paginate$Paginate$last = _jschomay$elm_paginate$Paginate_Custom$last;
+var _jschomay$elm_paginate$Paginate$first = _jschomay$elm_paginate$Paginate_Custom$first;
+var _jschomay$elm_paginate$Paginate$prev = _jschomay$elm_paginate$Paginate_Custom$prev;
+var _jschomay$elm_paginate$Paginate$next = _jschomay$elm_paginate$Paginate_Custom$next;
+var _jschomay$elm_paginate$Paginate$goTo = _jschomay$elm_paginate$Paginate_Custom$goTo;
+var _jschomay$elm_paginate$Paginate$changeItemsPerPage = _jschomay$elm_paginate$Paginate_Custom$changeItemsPerPage(_elm_lang$core$List$length);
+var _jschomay$elm_paginate$Paginate$map = _jschomay$elm_paginate$Paginate_Custom$map(_elm_lang$core$List$length);
+var _jschomay$elm_paginate$Paginate$fromList = F2(
+	function (a, b) {
+		return A3(_jschomay$elm_paginate$Paginate_Custom$init, _elm_lang$core$List$length, a, b);
+	});
+
 var _krisajenkins$remotedata$RemoteData$isNotAsked = function (data) {
 	var _p0 = data;
 	if (_p0.ctor === 'NotAsked') {
@@ -9710,25 +9936,28 @@ var _krisajenkins$remotedata$RemoteData$update = F2(
 
 var _user$project$Models$initialModel = {
 	initialHospitals: {ctor: '[]'},
-	refreshedHospitals: {
-		ctor: '::',
-		_0: {name: 'Loading...', address: '', city: '', state: '', zip: ''},
-		_1: {ctor: '[]'}
-	},
+	refreshedHospitals: A2(
+		_jschomay$elm_paginate$Paginate$fromList,
+		10,
+		{
+			ctor: '::',
+			_0: {name: 'Loading...', address: '', city: '', state: '', zip: ''},
+			_1: {ctor: '[]'}
+		}),
 	searchedHospitals: {ctor: '[]'},
-	index: 10,
 	key: ''
 };
-var _user$project$Models$Model = F5(
-	function (a, b, c, d, e) {
-		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, index: d, key: e};
+var _user$project$Models$Model = F4(
+	function (a, b, c, d) {
+		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, key: d};
 	});
 var _user$project$Models$Hospital = F5(
 	function (a, b, c, d, e) {
 		return {name: a, address: b, city: c, state: d, zip: e};
 	});
 
-var _user$project$Msgs$NextPage = {ctor: 'NextPage'};
+var _user$project$Msgs$Next = {ctor: 'Next'};
+var _user$project$Msgs$Prev = {ctor: 'Prev'};
 var _user$project$Msgs$SortZip = {ctor: 'SortZip'};
 var _user$project$Msgs$SortState = {ctor: 'SortState'};
 var _user$project$Msgs$SortCity = {ctor: 'SortCity'};
@@ -10124,7 +10353,10 @@ var _user$project$Update$update = F2(
 						model,
 						{
 							initialHospitals: _user$project$Update$updateInitial(_p2),
-							refreshedHospitals: _user$project$Update$updateInitial(_p2),
+							refreshedHospitals: A2(
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								_user$project$Update$updateInitial(_p2)),
 							searchedHospitals: _user$project$Update$updateInitial(_p2)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
@@ -10137,14 +10369,16 @@ var _user$project$Update$update = F2(
 						model,
 						{
 							refreshedHospitals: A2(
-								_elm_lang$core$List$filterMap,
-								_user$project$Update$refresh(_p3),
-								model.initialHospitals),
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$filterMap,
+									_user$project$Update$refresh(_p3),
+									model.initialHospitals)),
 							searchedHospitals: A2(
 								_elm_lang$core$List$filterMap,
 								_user$project$Update$refresh(_p3),
-								model.initialHospitals),
-							index: 10
+								model.initialHospitals)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -10161,12 +10395,14 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.name;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.name;
+									},
+									model.initialHospitals))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -10183,12 +10419,14 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.address;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.address;
+									},
+									model.initialHospitals))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -10205,12 +10443,14 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.city;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.city;
+									},
+									model.initialHospitals))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -10227,12 +10467,14 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.state;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.state;
+									},
+									model.initialHospitals))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -10249,12 +10491,24 @@ var _user$project$Update$update = F2(
 								},
 								model.initialHospitals),
 							refreshedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.zip;
-								},
-								model.initialHospitals),
-							index: 10
+								_jschomay$elm_paginate$Paginate$fromList,
+								10,
+								A2(
+									_elm_lang$core$List$sortBy,
+									function (_) {
+										return _.zip;
+									},
+									model.initialHospitals))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'Next':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: _jschomay$elm_paginate$Paginate$next(model.refreshedHospitals)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -10264,8 +10518,7 @@ var _user$project$Update$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							refreshedHospitals: A2(_elm_lang$core$List$take, model.index + 10, model.searchedHospitals),
-							index: model.index + 10
+							refreshedHospitals: _jschomay$elm_paginate$Paginate$prev(model.refreshedHospitals)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -10276,7 +10529,7 @@ var _user$project$View$page = F2(
 	function (model, key) {
 		return A2(
 			_user$project$Hospitals$view,
-			A2(_elm_lang$core$List$take, model.index, model.refreshedHospitals),
+			_jschomay$elm_paginate$Paginate$page(model.refreshedHospitals),
 			key);
 	});
 var _user$project$View$view = function (model) {
@@ -10313,16 +10566,57 @@ var _user$project$View$view = function (model) {
 					_1: {
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$button,
+							_elm_lang$html$Html$div,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$NextPage),
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
+										_1: {ctor: '[]'}
+									}),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('Load More'),
-								_1: {ctor: '[]'}
+								_0: A2(
+									_elm_lang$html$Html$button,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$Prev),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$disabled(
+												_jschomay$elm_paginate$Paginate$isFirst(model.refreshedHospitals)),
+											_1: {ctor: '[]'}
+										}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Prev'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$button,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$Next),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$disabled(
+													_jschomay$elm_paginate$Paginate$isLast(model.refreshedHospitals)),
+												_1: {ctor: '[]'}
+											}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Next'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
 							}),
 						_1: {ctor: '[]'}
 					}

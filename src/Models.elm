@@ -1,13 +1,13 @@
 module Models exposing (..)
 
 import RemoteData exposing (WebData)
+import Paginate exposing (..)
 
 
 type alias Model =
     { initialHospitals : List Hospital
-    , refreshedHospitals : List Hospital
+    , refreshedHospitals : PaginatedList Hospital
     , searchedHospitals : List Hospital
-    , index : Int
     , key : String
     }
 
@@ -16,9 +16,9 @@ initialModel : Model
 initialModel =
     { initialHospitals = []
     , refreshedHospitals =
-        [ { name = "Loading...", address = "", city = "", state = "", zip = "" } ]
+        Paginate.fromList 10
+            [ { name = "Loading...", address = "", city = "", state = "", zip = "" } ]
     , searchedHospitals = []
-    , index = 10
     , key = ""
     }
 

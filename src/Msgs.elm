@@ -14,4 +14,5 @@ type Msg
     | SortCity
     | SortState
     | SortZip
-    | NextPage
+    | Prev
+    | Next
