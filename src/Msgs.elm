@@ -10,9 +10,7 @@ type Msg
     | NewKey (Result Http.Error String)
     | Change String
     | SortName
-    | SortAddress
     | SortCity
     | SortState
-    | SortZip
     | Prev
     | Next

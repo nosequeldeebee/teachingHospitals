@@ -1,9 +1,7 @@
 var _user$project$Msgs$Next = {ctor: 'Next'};
 var _user$project$Msgs$Prev = {ctor: 'Prev'};
-var _user$project$Msgs$SortZip = {ctor: 'SortZip'};
 var _user$project$Msgs$SortState = {ctor: 'SortState'};
 var _user$project$Msgs$SortCity = {ctor: 'SortCity'};
-var _user$project$Msgs$SortAddress = {ctor: 'SortAddress'};
 var _user$project$Msgs$SortName = {ctor: 'SortName'};
 var _user$project$Msgs$Change = function (a) {
 	return {ctor: 'Change', _0: a};

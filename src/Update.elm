@@ -52,16 +52,6 @@ update msg model =
             , Cmd.none
             )
 
-        Msgs.SortAddress ->
-            ( { model
-                | searchedHospitals = List.sortBy .address model.initialHospitals
-                , refreshedHospitals =
-                    Paginate.fromList 10 <|
-                        List.sortBy .address model.initialHospitals
-              }
-            , Cmd.none
-            )
-
         Msgs.SortCity ->
             ( { model
                 | searchedHospitals = List.sortBy .city model.initialHospitals
@@ -78,16 +68,6 @@ update msg model =
                 , refreshedHospitals =
                     Paginate.fromList 10 <|
                         List.sortBy .state model.initialHospitals
-              }
-            , Cmd.none
-            )
-
-        Msgs.SortZip ->
-            ( { model
-                | searchedHospitals = List.sortBy .zip model.initialHospitals
-                , refreshedHospitals =
-                    Paginate.fromList 10 <|
-                        List.sortBy .zip model.initialHospitals
               }
             , Cmd.none
             )

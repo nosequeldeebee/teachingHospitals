@@ -90,30 +90,6 @@ var _user$project$Update$update = F2(
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			case 'SortAddress':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							searchedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.address;
-								},
-								model.initialHospitals),
-							refreshedHospitals: A2(
-								_jschomay$elm_paginate$Paginate$fromList,
-								10,
-								A2(
-									_elm_lang$core$List$sortBy,
-									function (_) {
-										return _.address;
-									},
-									model.initialHospitals))
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
 			case 'SortCity':
 				return {
 					ctor: '_Tuple2',
@@ -157,30 +133,6 @@ var _user$project$Update$update = F2(
 									_elm_lang$core$List$sortBy,
 									function (_) {
 										return _.state;
-									},
-									model.initialHospitals))
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'SortZip':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							searchedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.zip;
-								},
-								model.initialHospitals),
-							refreshedHospitals: A2(
-								_jschomay$elm_paginate$Paginate$fromList,
-								10,
-								A2(
-									_elm_lang$core$List$sortBy,
-									function (_) {
-										return _.zip;
 									},
 									model.initialHospitals))
 						}),

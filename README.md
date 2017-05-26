@@ -1,7 +1,7 @@
 # teachingHospitals
 displays US teaching hospitals through Go API and Elm page
 
-[Try me!](http://trink.io:9090)
+[Try me!](https://hospitals.trink.io)
 
 # API and Webserver Info
 

@@ -158,7 +158,16 @@ var _user$project$Hospitals$view = F2(
 													{
 														ctor: '::',
 														_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortName),
-														_1: {ctor: '[]'}
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$style(
+																{
+																	ctor: '::',
+																	_0: {ctor: '_Tuple2', _0: 'cursor', _1: 'pointer'},
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														}
 													},
 													{
 														ctor: '::',
@@ -176,11 +185,7 @@ var _user$project$Hospitals$view = F2(
 													ctor: '::',
 													_0: A2(
 														_elm_lang$html$Html$p,
-														{
-															ctor: '::',
-															_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortAddress),
-															_1: {ctor: '[]'}
-														},
+														{ctor: '[]'},
 														{
 															ctor: '::',
 															_0: _elm_lang$html$Html$text('Address'),
@@ -200,7 +205,16 @@ var _user$project$Hospitals$view = F2(
 															{
 																ctor: '::',
 																_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortCity),
-																_1: {ctor: '[]'}
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$style(
+																		{
+																			ctor: '::',
+																			_0: {ctor: '_Tuple2', _0: 'cursor', _1: 'pointer'},
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {ctor: '[]'}
+																}
 															},
 															{
 																ctor: '::',
@@ -221,7 +235,16 @@ var _user$project$Hospitals$view = F2(
 																{
 																	ctor: '::',
 																	_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortState),
-																	_1: {ctor: '[]'}
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$style(
+																			{
+																				ctor: '::',
+																				_0: {ctor: '_Tuple2', _0: 'cursor', _1: 'pointer'},
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {ctor: '[]'}
+																	}
 																},
 																{
 																	ctor: '::',
@@ -239,11 +262,7 @@ var _user$project$Hospitals$view = F2(
 																ctor: '::',
 																_0: A2(
 																	_elm_lang$html$Html$p,
-																	{
-																		ctor: '::',
-																		_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$SortZip),
-																		_1: {ctor: '[]'}
-																	},
+																	{ctor: '[]'},
 																	{
 																		ctor: '::',
 																		_0: _elm_lang$html$Html$text('Zip'),
