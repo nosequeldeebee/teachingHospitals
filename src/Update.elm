@@ -92,7 +92,11 @@ update msg model =
 
 refresh : String -> Hospital -> Maybe Hospital
 refresh keyword h =
-    if String.contains (String.toUpper keyword) h.name then
+    if String.contains (String.toUpper keyword) h.state then
+        Just h
+    else if String.contains (String.toUpper keyword) h.name && String.length keyword > 2 then
+        Just h
+    else if String.contains (String.toUpper keyword) h.city && String.length keyword > 2 then
         Just h
     else
         Nothing

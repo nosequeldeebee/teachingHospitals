@@ -3,7 +3,17 @@ var _user$project$Update$refresh = F2(
 		return A2(
 			_elm_lang$core$String$contains,
 			_elm_lang$core$String$toUpper(keyword),
-			h.name) ? _elm_lang$core$Maybe$Just(h) : _elm_lang$core$Maybe$Nothing;
+			h.state) ? _elm_lang$core$Maybe$Just(h) : ((A2(
+			_elm_lang$core$String$contains,
+			_elm_lang$core$String$toUpper(keyword),
+			h.name) && (_elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$String$length(keyword),
+			2) > 0)) ? _elm_lang$core$Maybe$Just(h) : ((A2(
+			_elm_lang$core$String$contains,
+			_elm_lang$core$String$toUpper(keyword),
+			h.city) && (_elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$String$length(keyword),
+			2) > 0)) ? _elm_lang$core$Maybe$Just(h) : _elm_lang$core$Maybe$Nothing));
 	});
 var _user$project$Update$update = F2(
 	function (msg, model) {
