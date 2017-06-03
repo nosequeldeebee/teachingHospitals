@@ -79,6 +79,12 @@ update msg model =
         Msgs.Prev ->
             ( { model | refreshedHospitals = Paginate.prev model.refreshedHospitals }, Cmd.none )
 
+        Msgs.First ->
+            ( { model | refreshedHospitals = Paginate.first model.refreshedHospitals }, Cmd.none )
+
+        Msgs.Last ->
+            ( { model | refreshedHospitals = Paginate.last model.refreshedHospitals }, Cmd.none )
+
 
 
 -- Capitalize search string to match API data format

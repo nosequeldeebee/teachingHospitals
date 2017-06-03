@@ -14,3 +14,5 @@ type Msg
     | SortState
     | Prev
     | Next
+    | First
+    | Last

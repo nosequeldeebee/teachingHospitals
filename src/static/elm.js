@@ -9943,6 +9943,8 @@ var _user$project$Models$Hospital = F5(
 		return {name: a, address: b, city: c, state: d, zip: e};
 	});
 
+var _user$project$Msgs$Last = {ctor: 'Last'};
+var _user$project$Msgs$First = {ctor: 'First'};
 var _user$project$Msgs$Next = {ctor: 'Next'};
 var _user$project$Msgs$Prev = {ctor: 'Prev'};
 var _user$project$Msgs$SortState = {ctor: 'SortState'};
@@ -9980,7 +9982,7 @@ var _user$project$Commands$hospitalDecoder = A3(
 					_elm_lang$core$Json_Decode$string,
 					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$Models$Hospital))))));
 var _user$project$Commands$hospitalsDecoder = _elm_lang$core$Json_Decode$list(_user$project$Commands$hospitalDecoder);
-var _user$project$Commands$fetchHospitalsUrl = 'http://trink.io:3001/hospitals';
+var _user$project$Commands$fetchHospitalsUrl = 'http://localhost:3001/hospitals';
 var _user$project$Commands$fetchHospitals = A2(
 	_elm_lang$core$Platform_Cmd$map,
 	_user$project$Msgs$OnFetchHospitals,
@@ -10479,13 +10481,33 @@ var _user$project$Update$update = F2(
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			default:
+			case 'Prev':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
 							refreshedHospitals: _jschomay$elm_paginate$Paginate$prev(model.refreshedHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'First':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: _jschomay$elm_paginate$Paginate$first(model.refreshedHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: _jschomay$elm_paginate$Paginate$last(model.refreshedHospitals)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -10550,7 +10572,7 @@ var _user$project$View$view = function (model) {
 									_elm_lang$html$Html$button,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$Prev),
+										_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$First),
 										_1: {
 											ctor: '::',
 											_0: _elm_lang$html$Html_Attributes$disabled(
@@ -10560,7 +10582,7 @@ var _user$project$View$view = function (model) {
 									},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text('Prev'),
+										_0: _elm_lang$html$Html$text('<'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -10569,20 +10591,60 @@ var _user$project$View$view = function (model) {
 										_elm_lang$html$Html$button,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$Next),
+											_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$Prev),
 											_1: {
 												ctor: '::',
 												_0: _elm_lang$html$Html_Attributes$disabled(
-													_jschomay$elm_paginate$Paginate$isLast(model.refreshedHospitals)),
+													_jschomay$elm_paginate$Paginate$isFirst(model.refreshedHospitals)),
 												_1: {ctor: '[]'}
 											}
 										},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text('Next'),
+											_0: _elm_lang$html$Html$text('Prev'),
 											_1: {ctor: '[]'}
 										}),
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$button,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$Next),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$disabled(
+														_jschomay$elm_paginate$Paginate$isLast(model.refreshedHospitals)),
+													_1: {ctor: '[]'}
+												}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Next'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$button,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onClick(_user$project$Msgs$Last),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$disabled(
+															_jschomay$elm_paginate$Paginate$isLast(model.refreshedHospitals)),
+														_1: {ctor: '[]'}
+													}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('>'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}
 								}
 							}),
 						_1: {ctor: '[]'}

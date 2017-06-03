@@ -148,13 +148,33 @@ var _user$project$Update$update = F2(
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			default:
+			case 'Prev':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
 							refreshedHospitals: _jschomay$elm_paginate$Paginate$prev(model.refreshedHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'First':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: _jschomay$elm_paginate$Paginate$first(model.refreshedHospitals)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							refreshedHospitals: _jschomay$elm_paginate$Paginate$last(model.refreshedHospitals)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};

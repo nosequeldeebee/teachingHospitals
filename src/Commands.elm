@@ -30,7 +30,7 @@ fetchHospitals =
 
 fetchHospitalsUrl : String
 fetchHospitalsUrl =
-    "http://trink.io:3001/hospitals"
+    "http://localhost:3001/hospitals"
 
 
 hospitalsDecoder : Decode.Decoder (List Hospital)

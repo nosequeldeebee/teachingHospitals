@@ -1,3 +1,5 @@
+var _user$project$Msgs$Last = {ctor: 'Last'};
+var _user$project$Msgs$First = {ctor: 'First'};
 var _user$project$Msgs$Next = {ctor: 'Next'};
 var _user$project$Msgs$Prev = {ctor: 'Prev'};
 var _user$project$Msgs$SortState = {ctor: 'SortState'};

@@ -17,6 +17,12 @@ view model =
         , br [] []
         , div [ style [ ( "text-align", "center" ) ] ]
             [ button
+                [ onClick Msgs.First
+                , disabled <|
+                    Paginate.isFirst model.refreshedHospitals
+                ]
+                [ text "<" ]
+            , button
                 [ onClick Msgs.Prev
                 , disabled <|
                     Paginate.isFirst model.refreshedHospitals
@@ -28,6 +34,12 @@ view model =
                     Paginate.isLast model.refreshedHospitals
                 ]
                 [ text "Next" ]
+            , button
+                [ onClick Msgs.Last
+                , disabled <|
+                    Paginate.isLast model.refreshedHospitals
+                ]
+                [ text ">" ]
             ]
         ]
 
