@@ -4,6 +4,8 @@ var _user$project$InitialModel$initialModel = {
 		_jschomay$elm_paginate$Paginate$fromList,
 		1,
 		_user$project$WebResponse$updateInitial(_krisajenkins$remotedata$RemoteData$Loading)),
-	searchedHospitals: {ctor: '[]'},
-	key: ''
+	key: '',
+	reverseName: false,
+	reverseCity: false,
+	reverseState: false
 };

@@ -15,6 +15,120 @@ var _user$project$Update$refresh = F2(
 			_elm_lang$core$String$length(keyword),
 			2) > 0)) ? _elm_lang$core$Maybe$Just(h) : _elm_lang$core$Maybe$Nothing));
 	});
+var _user$project$Update$sortState = function (model) {
+	return _elm_lang$core$Native_Utils.eq(model.reverseState, false) ? {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				refreshedHospitals: A2(
+					_jschomay$elm_paginate$Paginate$fromList,
+					10,
+					A2(
+						_elm_lang$core$List$sortBy,
+						function (_) {
+							return _.state;
+						},
+						model.initialHospitals)),
+				reverseState: true
+			}),
+		_1: _elm_lang$core$Platform_Cmd$none
+	} : {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				refreshedHospitals: A2(
+					_jschomay$elm_paginate$Paginate$fromList,
+					10,
+					_elm_lang$core$List$reverse(
+						A2(
+							_elm_lang$core$List$sortBy,
+							function (_) {
+								return _.state;
+							},
+							model.initialHospitals))),
+				reverseState: false
+			}),
+		_1: _elm_lang$core$Platform_Cmd$none
+	};
+};
+var _user$project$Update$sortCity = function (model) {
+	return _elm_lang$core$Native_Utils.eq(model.reverseCity, false) ? {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				refreshedHospitals: A2(
+					_jschomay$elm_paginate$Paginate$fromList,
+					10,
+					A2(
+						_elm_lang$core$List$sortBy,
+						function (_) {
+							return _.city;
+						},
+						model.initialHospitals)),
+				reverseCity: true
+			}),
+		_1: _elm_lang$core$Platform_Cmd$none
+	} : {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				refreshedHospitals: A2(
+					_jschomay$elm_paginate$Paginate$fromList,
+					10,
+					_elm_lang$core$List$reverse(
+						A2(
+							_elm_lang$core$List$sortBy,
+							function (_) {
+								return _.city;
+							},
+							model.initialHospitals))),
+				reverseCity: false
+			}),
+		_1: _elm_lang$core$Platform_Cmd$none
+	};
+};
+var _user$project$Update$sortName = function (model) {
+	return _elm_lang$core$Native_Utils.eq(model.reverseName, false) ? {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				refreshedHospitals: A2(
+					_jschomay$elm_paginate$Paginate$fromList,
+					10,
+					A2(
+						_elm_lang$core$List$sortBy,
+						function (_) {
+							return _.name;
+						},
+						model.initialHospitals)),
+				reverseName: true
+			}),
+		_1: _elm_lang$core$Platform_Cmd$none
+	} : {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Native_Utils.update(
+			model,
+			{
+				refreshedHospitals: A2(
+					_jschomay$elm_paginate$Paginate$fromList,
+					10,
+					_elm_lang$core$List$reverse(
+						A2(
+							_elm_lang$core$List$sortBy,
+							function (_) {
+								return _.name;
+							},
+							model.initialHospitals))),
+				reverseName: false
+			}),
+		_1: _elm_lang$core$Platform_Cmd$none
+	};
+};
 var _user$project$Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
@@ -50,13 +164,11 @@ var _user$project$Update$update = F2(
 							refreshedHospitals: A2(
 								_jschomay$elm_paginate$Paginate$fromList,
 								10,
-								_user$project$WebResponse$updateInitial(_p1)),
-							searchedHospitals: _user$project$WebResponse$updateInitial(_p1)
+								_user$project$WebResponse$updateInitial(_p1))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Change':
-				var _p2 = _p0._0;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -67,87 +179,17 @@ var _user$project$Update$update = F2(
 								10,
 								A2(
 									_elm_lang$core$List$filterMap,
-									_user$project$Update$refresh(_p2),
-									model.initialHospitals)),
-							searchedHospitals: A2(
-								_elm_lang$core$List$filterMap,
-								_user$project$Update$refresh(_p2),
-								model.initialHospitals)
+									_user$project$Update$refresh(_p0._0),
+									model.initialHospitals))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'SortName':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							searchedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.name;
-								},
-								model.initialHospitals),
-							refreshedHospitals: A2(
-								_jschomay$elm_paginate$Paginate$fromList,
-								10,
-								A2(
-									_elm_lang$core$List$sortBy,
-									function (_) {
-										return _.name;
-									},
-									model.initialHospitals))
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+				return _user$project$Update$sortName(model);
 			case 'SortCity':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							searchedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.city;
-								},
-								model.initialHospitals),
-							refreshedHospitals: A2(
-								_jschomay$elm_paginate$Paginate$fromList,
-								10,
-								A2(
-									_elm_lang$core$List$sortBy,
-									function (_) {
-										return _.city;
-									},
-									model.initialHospitals))
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+				return _user$project$Update$sortCity(model);
 			case 'SortState':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							searchedHospitals: A2(
-								_elm_lang$core$List$sortBy,
-								function (_) {
-									return _.state;
-								},
-								model.initialHospitals),
-							refreshedHospitals: A2(
-								_jschomay$elm_paginate$Paginate$fromList,
-								10,
-								A2(
-									_elm_lang$core$List$sortBy,
-									function (_) {
-										return _.state;
-									},
-									model.initialHospitals))
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+				return _user$project$Update$sortState(model);
 			case 'Next':
 				return {
 					ctor: '_Tuple2',

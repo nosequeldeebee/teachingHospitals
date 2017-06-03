@@ -6,8 +6,10 @@ import Paginate exposing (..)
 type alias Model =
     { initialHospitals : List Hospital
     , refreshedHospitals : PaginatedList Hospital
-    , searchedHospitals : List Hospital
     , key : String
+    , reverseName : Bool
+    , reverseCity : Bool
+    , reverseState : Bool
     }
 
 

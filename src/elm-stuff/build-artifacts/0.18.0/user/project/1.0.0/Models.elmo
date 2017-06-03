@@ -1,6 +1,6 @@
-var _user$project$Models$Model = F4(
-	function (a, b, c, d) {
-		return {initialHospitals: a, refreshedHospitals: b, searchedHospitals: c, key: d};
+var _user$project$Models$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {initialHospitals: a, refreshedHospitals: b, key: c, reverseName: d, reverseCity: e, reverseState: f};
 	});
 var _user$project$Models$Hospital = F5(
 	function (a, b, c, d, e) {

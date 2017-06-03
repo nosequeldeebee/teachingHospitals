@@ -25,7 +25,6 @@ update msg model =
                 , refreshedHospitals =
                     Paginate.fromList 10 <|
                         updateInitial response
-                , searchedHospitals = updateInitial response
               }
             , Cmd.none
             )
@@ -36,41 +35,19 @@ update msg model =
                 | refreshedHospitals =
                     Paginate.fromList 10 <|
                         List.filterMap (refresh keyword) model.initialHospitals
-                , searchedHospitals = List.filterMap (refresh keyword) model.initialHospitals
               }
             , Cmd.none
             )
 
         -- Sorting column headers
         Msgs.SortName ->
-            ( { model
-                | searchedHospitals = List.sortBy .name model.initialHospitals
-                , refreshedHospitals =
-                    Paginate.fromList 10 <|
-                        List.sortBy .name model.initialHospitals
-              }
-            , Cmd.none
-            )
+            sortName model
 
         Msgs.SortCity ->
-            ( { model
-                | searchedHospitals = List.sortBy .city model.initialHospitals
-                , refreshedHospitals =
-                    Paginate.fromList 10 <|
-                        List.sortBy .city model.initialHospitals
-              }
-            , Cmd.none
-            )
+            sortCity model
 
         Msgs.SortState ->
-            ( { model
-                | searchedHospitals = List.sortBy .state model.initialHospitals
-                , refreshedHospitals =
-                    Paginate.fromList 10 <|
-                        List.sortBy .state model.initialHospitals
-              }
-            , Cmd.none
-            )
+            sortState model
 
         -- Navigate Pages
         Msgs.Next ->
@@ -84,6 +61,76 @@ update msg model =
 
         Msgs.Last ->
             ( { model | refreshedHospitals = Paginate.last model.refreshedHospitals }, Cmd.none )
+
+
+
+--sort by fields and reverse sort if clicked again
+
+
+sortName : Model -> ( Model, Cmd Msg )
+sortName model =
+    if model.reverseName == False then
+        ( { model
+            | refreshedHospitals =
+                Paginate.fromList 10 <|
+                    List.sortBy .name model.initialHospitals
+            , reverseName = True
+          }
+        , Cmd.none
+        )
+    else
+        ( { model
+            | refreshedHospitals =
+                Paginate.fromList 10 <|
+                    List.reverse (List.sortBy .name model.initialHospitals)
+            , reverseName = False
+          }
+        , Cmd.none
+        )
+
+
+sortCity : Model -> ( Model, Cmd Msg )
+sortCity model =
+    if model.reverseCity == False then
+        ( { model
+            | refreshedHospitals =
+                Paginate.fromList 10 <|
+                    List.sortBy .city model.initialHospitals
+            , reverseCity = True
+          }
+        , Cmd.none
+        )
+    else
+        ( { model
+            | refreshedHospitals =
+                Paginate.fromList 10 <|
+                    List.reverse (List.sortBy .city model.initialHospitals)
+            , reverseCity = False
+          }
+        , Cmd.none
+        )
+
+
+sortState : Model -> ( Model, Cmd Msg )
+sortState model =
+    if model.reverseState == False then
+        ( { model
+            | refreshedHospitals =
+                Paginate.fromList 10 <|
+                    List.sortBy .state model.initialHospitals
+            , reverseState = True
+          }
+        , Cmd.none
+        )
+    else
+        ( { model
+            | refreshedHospitals =
+                Paginate.fromList 10 <|
+                    List.reverse (List.sortBy .state model.initialHospitals)
+            , reverseState = False
+          }
+        , Cmd.none
+        )
 
 
 

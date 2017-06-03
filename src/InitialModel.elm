@@ -12,6 +12,8 @@ initialModel =
     , refreshedHospitals =
         Paginate.fromList 1 <|
             updateInitial RemoteData.Loading
-    , searchedHospitals = []
     , key = ""
+    , reverseName = False
+    , reverseCity = False
+    , reverseState = False
     }
